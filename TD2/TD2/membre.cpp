@@ -7,9 +7,9 @@
 
 Membre::Membre() :
 	nom_(""),
-	points_(0),
-	billets_(),
-	coupons_()
+	points_(0)
+	//billets_(),
+	//coupons_()
 {
 }
 
@@ -28,7 +28,7 @@ Membre::Membre(const Membre& copieMembre)
 	}
 
 	for (int i = 0; i < copieMembre.coupons_.size(); i++) {
-		coupons_.push_back(new Coupon(*(copieMembre.coupons_[i])));
+		coupons_.push_back(copieMembre.coupons_[i]);
 	}
 
 }
@@ -75,15 +75,6 @@ int Membre::getNbCoupons() const
 	return coupons_.size();
 }
 
-//int Membre::getCapaciteBillets() const
-//{
-//	return capaciteBillets_;
-//}
-//
-//int Membre::getCapaciteCoupons() const
-//{
-//	return capaciteCoupons_;
-//}
 
 void Membre::setNom(const string& nom)
 {
@@ -151,7 +142,7 @@ Membre& Membre::operator-=(Coupon* coupon)
 }
 
 // TODO: Surcharger l'operateur == (operande de gauche est un membre et droite est un string)
-bool Membre::operator==(const string& nom) 
+bool Membre::operator==(const string& nom) const
 {
 	return (nom_ == nom);
 }
@@ -166,20 +157,28 @@ bool operator==(const string& nom, const Membre& membre)
 // TODO: Surcharger l'operateur =
 Membre& Membre::operator=(const Membre& membre) // ????????????????
 {
-	nom_ = membre.nom_;
-	points_ = membre.points_;
-	for (int i = 0; i < billets_.size(); i++)
-		delete billets_[i];
+	if (nom_ != membre.nom_) {
 
-	billets_.clear();
-	coupons_.clear();
-	for (int i = 0; i < membre.billets_.size(); i++) {
-		billets_.push_back(membre.billets_[i]);
+		nom_ = membre.nom_;
+		points_ = membre.points_;
+		for (int i = 0; i < billets_.size(); i++)
+			delete billets_[i];
+
+		billets_.clear();
+		coupons_.clear();
+		for (int i = 0; i < membre.billets_.size(); i++) {
+			Billet* billet = new Billet(*membre.billets_[i]);
+			billets_.push_back(billet);
+		}
+
+		for (int i = 0; i < membre.coupons_.size(); i++) {
+			coupons_.push_back(membre.coupons_[i]);
+		}
+
+
+
 	}
 
-	for (int i = 0; i < membre.coupons_.size(); i++) {
-		coupons_.push_back(membre.coupons_[i]);
-	}
 
 	return *this;
 }
@@ -193,13 +192,15 @@ ostream& operator<<(ostream& o, const Membre& membre)
 	o << "\t" << left << setw(10) << "- Points" << ": " << membre.points_ << endl;
 	o << "\t" << "- Billets :" << endl;
 	for (int i = 0; i < membre.billets_.size(); i++) {
-		o << membre.billets_[i];
+		o << *membre.billets_[i];
 	}
 	o << "\t" << "- Coupons :" << endl;
 	for (int i = 0; i < membre.coupons_.size(); i++) {
-		o << membre.coupons_[i];
+		o << *membre.coupons_[i];
 	}
 	o << endl;
+
+	return o;
 }
 
 

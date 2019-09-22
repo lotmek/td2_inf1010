@@ -1,0 +1,211 @@
+/*
+ * Date : 12 Septembre 2019
+ * Auteur : Philippe CÔTÉ-MORNEAULT
+ */
+
+#include "membre.h"
+
+Membre::Membre() :
+	nom_(""),
+	points_(0),
+	billets_(new Billet* [CAPACITE_INITIALE]),
+	nbBillets_(0),
+	capaciteBillets_(CAPACITE_INITIALE),
+	coupons_(new Coupon* [CAPACITE_INITIALE]),
+	nbCoupons_(0),
+	capaciteCoupons_(CAPACITE_INITIALE)
+{
+}
+
+Membre::Membre(const string& nom) :
+	nom_(nom),
+	points_(0),
+	billets_(new Billet* [CAPACITE_INITIALE]),
+	nbBillets_(0),
+	capaciteBillets_(CAPACITE_INITIALE),
+	coupons_(new Coupon* [CAPACITE_INITIALE]),
+	nbCoupons_(0),
+	capaciteCoupons_(CAPACITE_INITIALE)
+{
+}
+
+Membre::Membre(const Membre& copieMembre)
+	: nom_(copieMembre.nom_), points_(copieMembre.points_) {
+	for (int i = 0; i < copieMembre.billets_.size(); i++) {
+		billets_.push_back(new Billet(*(copieMembre.billets_[i])));
+	}
+
+	for (int i = 0; i < copieMembre.coupons_.size(); i++) {
+		coupons_.push_back(new Coupon(*(copieMembre.coupons_[i])));
+	}
+
+}
+
+Membre::~Membre()
+{
+	for (int i = 0; i < billets_.size(); i++) {
+		delete billets_[i];
+		billets_.pop_back();
+	}
+
+	for (int j = 0; j < coupons_.size(); j++) {
+		coupons_.pop_back();
+	}
+}
+
+string Membre::getNom() const
+{
+	return nom_;
+}
+
+int Membre::getPoints() const
+{
+	return points_;
+}
+
+Billet** Membre::getBillets() const
+{
+	return billets_;
+}
+
+Coupon** Membre::getCoupons() const
+{
+	return coupons_;
+}
+
+int Membre::getNbBillets() const
+{
+	return nbBillets_;
+}
+
+int Membre::getNbCoupons() const
+{
+	return nbCoupons_;
+}
+
+int Membre::getCapaciteBillets() const
+{
+	return capaciteBillets_;
+}
+
+int Membre::getCapaciteCoupons() const
+{
+	return capaciteCoupons_;
+}
+
+void Membre::setNom(const string& nom)
+{
+	nom_ = nom;
+}
+
+void Membre::modifierPoints(int points)
+{
+	points_ += points;
+}
+
+void Membre::ajouterBillet(const string& pnr, double prix, const string& od, TarifBillet tarif, const string& dateVol)
+{
+	Billet* billet = new Billet(pnr, nom_, prix, od, tarif, dateVol);
+	if (nbBillets_ >= capaciteBillets_) {
+		capaciteBillets_ *= 2;
+
+		Billet** temp = new Billet * [capaciteBillets_];
+
+		for (int i = 0; i < nbBillets_; i++) {
+			temp[i] = billets_[i];
+		}
+		delete[] billets_;
+
+		billets_ = temp;
+	}
+	billets_[nbBillets_++] = billet;
+	modifierPoints(calculerPoints(billet));
+}
+
+void Membre::acheterCoupon(Coupon* coupon)
+{
+	if (points_ > coupon->getCout()) {
+		// TODO: Utiliser la surcharge de l'operateur += de la classe Membre plutot qu'utiliser la methode ajouterCoupon
+		ajouterCoupon(coupon);
+		modifierPoints(-coupon->getCout());
+	}
+}
+
+double  Membre::calculerPoints(Billet * billet) const
+{
+	double bonus = 0;
+	switch (billet->getTarif()) {
+	case TarifBillet::PremiumEconomie:
+		bonus = 50;
+		break;
+	case TarifBillet::Affaire:
+		bonus = 150;
+		break;
+	case TarifBillet::Premiere:
+		bonus = 300;
+		break;
+	default:
+		break;
+	}
+
+	return billet->getPrix()* 0.10 + bonus;
+}
+
+// TODO: Remplacer cette methode par l'operateur +=
+Membre& Membre::operator+=(Coupon* coupon) {
+	coupons_.push_back(coupon);
+	return *this;
+}
+
+// TODO: Remplacer cette methode par l'operateur -=
+Membre& Membre::operator-=(Coupon* coupon)
+{
+	for (int i = 0; i < coupons_.size(); i++) {
+		if (coupons_[i] == coupon) {
+			coupons_[i] = coupons_[coupons_.size() - 1];
+			coupons_.pop_back();
+		}
+	}
+	return *this;
+}
+
+
+
+
+Membre& Membre::operator=(const Membre& membre) // ????????????????
+{
+	nom_ = membre.nom_;
+	points_ = membre.points_;
+	for (int i = 0; i < billets_.size(); i++)
+		delete billets_[i];
+
+	billets_.clear();
+	coupons_.clear();
+	for (int i = 0; i < membre.billets_.size(); i++) {
+		billets_.push_back(membre.billets_[i]);
+	}
+
+	for (int i = 0; i < membre.coupons_.size(); i++) {
+		coupons_.push_back(membre.coupons_[i]);
+	}
+}
+
+
+// TODO: Remplacer cette methode par la surcharge de l'operateur <<
+ostream& operator<<(ostream& o, const Membre& membre)
+{
+	o << setfill(' ');
+	o << "- Membre " << membre.nom_ << ":" << endl;
+	o << "\t" << left << setw(10) << "- Points" << ": " << membre.points_ << endl;
+	o << "\t" << "- Billets :" << endl;
+	for (int i = 0; i < membre.billets_.size(); i++) {
+		o << membre.billets_[i];
+	}
+	o << "\t" << "- Coupons :" << endl;
+	for (int i = 0; i < membre.coupons_.size(); i++) {
+		o << membre.coupons_[i];
+	}
+	o << endl;
+}
+
+

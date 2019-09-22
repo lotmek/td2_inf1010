@@ -1,19 +1,33 @@
-/*
- * Date : 12 Septembre 2019
- * Auteur : Philippe CÔTÉ-MORNEAULT
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 2
+ * Nom: membre.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
-/* REPONSES AUX QUESTIONS
+ //REPONSES AUX QUESTIONS
 
-1.	Quel est l’utilité de l’opérateur = et du constructeur par copie?
+ //1.	Quel est l’utilité de l’opérateur = et du constructeur par copie?
+ //- L'opérande = et le constructeur par copie nous évitent de supprimer et de recopier à chaque fois les attributs un à un
+ //  pour copier des variables de classe commune.
 
-2.	Dans quel cas est-il nécessaire de surcharger l’opérateur = et le constructeur par copie? 
+ //2.	Dans quel cas est-il nécessaire de surcharger l’opérateur = et le constructeur par copie? 
+ //- Il est recommandé de surcharger l'opérateur = et le constructeur par copie à chaque fois que l'on définit une classe. 
+ //  Cela permet de facilement créer des copies, ou d'affecter plusieurs variables en cascade.
 
-3.	Pourquoi avons-nous dû surcharger l’opérateur = et le constructeur par copie pour la classe Membre?
+ //3.	Pourquoi avons-nous dû surcharger l’opérateur = et le constructeur par copie pour la classe Membre ?
+ //- La classe membre possède des attributs complexes dans lesquels des vecteurs sont composés de pointeurs, 
+ //  il n'est donc pas facile de créer des copies de variables appartenant à cette classe.
 
-4.	Qu’est-ce qui différencie l’opérateur = du constructeur par copie?
 
-*/
+ //4.	Qu’est-ce qui différencie l’opérateur = du constructeur par copie?
+ //- Le constructeur par copie initialise les attributs d'un nouvel objet avec les mêmes attributs d'un autre objet, 
+ //  tandis que l'opérateur = supprime des attributs d'un objet déjà existant pour recopier au-dessus les attributs d'un autre objet
+ //  
+
 
 #include <string>
 #include <iostream>

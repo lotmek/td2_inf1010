@@ -1,0 +1,13 @@
+﻿  billet.cpp
+  coupon.cpp
+  main.cpp
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td\td1\td1\gestionnaire.h(8): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td\td1\td1\membre.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td\td1\td1\membre.h(11): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  membre.cpp
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td\td1\td1\membre.h(10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td\td1\td1\membre.h(11): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td\td1\td1\membre.cpp(88): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+  Génération de code en cours...
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td\td1\td1\billet.cpp(96): warning C4715: 'Billet::formatTarif' : les chemins de contrôle ne retournent pas tous une valeur
+  TD1.vcxproj -> C:\Users\Lotfi\Documents\Cours Poly\Session 2 (Automne 2019)\INF1010\TD\TD1\Debug\TD1.exe

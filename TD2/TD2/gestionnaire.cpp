@@ -16,7 +16,7 @@ Gestionnaire::Gestionnaire() :
 }
 
 Gestionnaire::~Gestionnaire()
-{
+{ 
 	for (int i = 0; i < nbMembres_; i++) {
 		delete membres_[i];
 	}

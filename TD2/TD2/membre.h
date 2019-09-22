@@ -27,12 +27,12 @@ public:
 	// Getters
 	string getNom() const;
 	int getPoints() const;
-	Billet** getBillets() const;
+	vector<Billet*> getBillets() const;
 	int getNbBillets() const;
-	int getCapaciteBillets() const;
-	Coupon** getCoupons() const;
+	//int getCapaciteBillets() const;
+	vector<Coupon*> getCoupons() const;
 	int getNbCoupons() const;
-	int getCapaciteCoupons() const;
+	//int getCapaciteCoupons() const;
 
 	// Setters
 	void setNom(const string& nom);
@@ -49,8 +49,11 @@ public:
 	Membre& operator-=(Coupon* coupon);
 
 	// TODO: Surcharger l'operateur == (operande de gauche est un membre et droite est un string)
-	friend bool operator==(const string& nom);
+	bool operator==(const string& nom);
+
 	// TODO: Surcharger l'operateur == (operande de gauche est un string et droite est un membre)
+	friend bool operator==(const string& nom, const Membre& membre);
+
 	// TODO: Surcharger l'operateur =
 	Membre& operator=(const Membre& membre);
 

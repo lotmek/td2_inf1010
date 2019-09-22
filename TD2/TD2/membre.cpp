@@ -8,24 +8,16 @@
 Membre::Membre() :
 	nom_(""),
 	points_(0),
-	billets_(new Billet* [CAPACITE_INITIALE]),
-	nbBillets_(0),
-	capaciteBillets_(CAPACITE_INITIALE),
-	coupons_(new Coupon* [CAPACITE_INITIALE]),
-	nbCoupons_(0),
-	capaciteCoupons_(CAPACITE_INITIALE)
+	billets_(),
+	coupons_()
 {
 }
 
 Membre::Membre(const string& nom) :
 	nom_(nom),
 	points_(0),
-	billets_(new Billet* [CAPACITE_INITIALE]),
-	nbBillets_(0),
-	capaciteBillets_(CAPACITE_INITIALE),
-	coupons_(new Coupon* [CAPACITE_INITIALE]),
-	nbCoupons_(0),
-	capaciteCoupons_(CAPACITE_INITIALE)
+	billets_(),
+	coupons_()
 {
 }
 
@@ -63,35 +55,35 @@ int Membre::getPoints() const
 	return points_;
 }
 
-Billet** Membre::getBillets() const
+vector<Billet*> Membre::getBillets() const
 {
 	return billets_;
 }
 
-Coupon** Membre::getCoupons() const
+vector<Coupon*> Membre::getCoupons() const
 {
 	return coupons_;
 }
 
 int Membre::getNbBillets() const
 {
-	return nbBillets_;
+	return billets_.size();
 }
 
 int Membre::getNbCoupons() const
 {
-	return nbCoupons_;
+	return coupons_.size();
 }
 
-int Membre::getCapaciteBillets() const
-{
-	return capaciteBillets_;
-}
-
-int Membre::getCapaciteCoupons() const
-{
-	return capaciteCoupons_;
-}
+//int Membre::getCapaciteBillets() const
+//{
+//	return capaciteBillets_;
+//}
+//
+//int Membre::getCapaciteCoupons() const
+//{
+//	return capaciteCoupons_;
+//}
 
 void Membre::setNom(const string& nom)
 {
@@ -106,19 +98,7 @@ void Membre::modifierPoints(int points)
 void Membre::ajouterBillet(const string& pnr, double prix, const string& od, TarifBillet tarif, const string& dateVol)
 {
 	Billet* billet = new Billet(pnr, nom_, prix, od, tarif, dateVol);
-	if (nbBillets_ >= capaciteBillets_) {
-		capaciteBillets_ *= 2;
-
-		Billet** temp = new Billet * [capaciteBillets_];
-
-		for (int i = 0; i < nbBillets_; i++) {
-			temp[i] = billets_[i];
-		}
-		delete[] billets_;
-
-		billets_ = temp;
-	}
-	billets_[nbBillets_++] = billet;
+	billets_.push_back(billet);
 	modifierPoints(calculerPoints(billet));
 }
 
@@ -126,7 +106,7 @@ void Membre::acheterCoupon(Coupon* coupon)
 {
 	if (points_ > coupon->getCout()) {
 		// TODO: Utiliser la surcharge de l'operateur += de la classe Membre plutot qu'utiliser la methode ajouterCoupon
-		ajouterCoupon(coupon);
+		*this += coupon;
 		modifierPoints(-coupon->getCout());
 	}
 }
@@ -152,7 +132,8 @@ double  Membre::calculerPoints(Billet * billet) const
 }
 
 // TODO: Remplacer cette methode par l'operateur +=
-Membre& Membre::operator+=(Coupon* coupon) {
+Membre& Membre::operator+=(Coupon* coupon)
+{
 	coupons_.push_back(coupon);
 	return *this;
 }
@@ -169,9 +150,20 @@ Membre& Membre::operator-=(Coupon* coupon)
 	return *this;
 }
 
+// TODO: Surcharger l'operateur == (operande de gauche est un membre et droite est un string)
+bool Membre::operator==(const string& nom) 
+{
+	return (nom_ == nom);
+}
 
 
+// TODO: Surcharger l'operateur == (operande de gauche est un string et droite est un membre)
+bool operator==(const string& nom, const Membre& membre)
+{
+	return (membre.nom_ == nom);
+}
 
+// TODO: Surcharger l'operateur =
 Membre& Membre::operator=(const Membre& membre) // ????????????????
 {
 	nom_ = membre.nom_;
@@ -188,6 +180,8 @@ Membre& Membre::operator=(const Membre& membre) // ????????????????
 	for (int i = 0; i < membre.coupons_.size(); i++) {
 		coupons_.push_back(membre.coupons_[i]);
 	}
+
+	return *this;
 }
 
 

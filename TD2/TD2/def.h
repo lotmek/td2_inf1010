@@ -1,7 +1,12 @@
-/*
- * Date : 1 Septembre 2019
- * Auteur : Wassim Khene
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 2
+ * Nom: membre.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 #ifndef DEF_H
 #define DEF_H
 

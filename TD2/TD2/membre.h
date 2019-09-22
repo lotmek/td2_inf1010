@@ -1,7 +1,12 @@
-/*
- * Date : 12 Septembre 2019
- * Auteur : Philippe CÔTÉ-MORNEAULT
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 2
+ * Nom: membre.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #ifndef MEMBRE_H
 #define MEMBRE_H
@@ -28,9 +33,7 @@ public:
 	string getNom() const;
 	int getPoints() const;
 	vector<Billet*> getBillets() const;
-	int getNbBillets() const;
 	vector<Coupon*> getCoupons() const;
-	int getNbCoupons() const;
 
 	// Setters
 	void setNom(const string& nom);

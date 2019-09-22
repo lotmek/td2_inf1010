@@ -1,7 +1,12 @@
-/*
- * Date : 1 Septembre 2019
- * Auteur : Wassim Khene
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 1
+ * Nom: main.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #include <string>
 #include <iostream>
@@ -196,7 +201,6 @@ int main() {
 		&& marc->getBillets()[1]->getPrix() == 1600
 		&& marc->getPoints() == 1960
 		&& marc->getNbCoupons() == 1);
-
 	// Affichage des tests
 	cout << "TESTS" << endl;
 	for (unsigned int i = 0; i < tests.size(); i++)
@@ -210,7 +214,7 @@ int main() {
 
 	cout << "\n\n";
 	// Affichage du programme
-	g->afficherInfos();
+	g->afficherInfos();			
 
 	// Liberation de la memoire
 	delete b1;

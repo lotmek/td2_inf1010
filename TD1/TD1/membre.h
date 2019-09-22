@@ -1,14 +1,19 @@
-/*
- * Date : 1 Septembre 2019
- * Auteur : Wassim Khene
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 1
+ * Nom: membre.h
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #ifndef MEMBRE_H
 #define MEMBRE_H
 
 #include <string>
-#include "billet.h";
-#include "coupon.h";
+#include "billet.h"			//ENLEVER LE ; 
+#include "coupon.h"			//ENLEVER LE ; 
 
 using namespace std;
 
@@ -22,14 +27,14 @@ public:
 	~Membre();
 
 	// Getters
-	string getNom();
-	int getPoints();
-	Billet** getBillets();
-	int getNbBillets();
-	int getCapaciteBillets();
-	Coupon** getCoupons();
-	int getNbCoupons();
-	int getCapaciteCoupons();
+	string getNom() const;
+	int getPoints() const;
+	Billet** getBillets() const;
+	int getNbBillets() const;
+	int getCapaciteBillets() const;
+	Coupon** getCoupons() const;
+	int getNbCoupons() const;
+	int getCapaciteCoupons() const;
 
 	// Setters
 	void setNom(const string& nom);
@@ -42,7 +47,7 @@ public:
 	void acheterCoupon(Coupon* coupon);
 	double calculerPoints(Billet* billet);
 
-	void afficherMembre();
+	void afficherMembre() const;
 
 private:
 	string nom_;

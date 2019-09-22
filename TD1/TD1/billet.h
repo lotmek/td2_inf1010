@@ -1,7 +1,12 @@
-/*
- * Date : 1 Septembre 2019
- * Auteur : Wassim Khene
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 1
+ * Nom: billet.h
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #ifndef BILLET_H
 #define BILLET_H
@@ -23,24 +28,24 @@ public:
 	~Billet();
 
 	// Getters
-	string getPnr();
-	string getNomPassager();
-	double getPrix();
-	string getOd();
-	TarifBillet getTarif();
-	string getDateVol();
+	string getPnr() const;
+	string getNomPassager() const;
+	double getPrix() const;
+	string getOd() const;
+	TarifBillet getTarif() const;
+	string getDateVol() const;
 
 	// Setters
 	void setPnr(const string& pnr);
 	void setNomPassager(const string& nomPassager);
 	void setPrix(double prix);
 	void setOd(const string& od);
-	void setTarif(TarifBillet tarif);
+	void setTarif(const TarifBillet& tarif);
 	void setDateVol(const string& dateVol);
 
-	string formatTarif(TarifBillet tarif);
+	string formatTarif(TarifBillet tarif) const;
 
-	void afficherBillet();
+	void afficherBillet() const;
 private:
 	string pnr_;
 	string nomPassager_;

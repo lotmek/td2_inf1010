@@ -1,7 +1,13 @@
-/*
- * Date : 1 Septembre 2019
- * Auteur : Wassim Khene
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 1
+ * Nom: gestionnaire.h
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
+
 #ifndef GESTIONNAIRE_H
 #define	GESTIONNAIRE_H
 
@@ -17,12 +23,12 @@ public:
 	~Gestionnaire();
 
 	// Getters
-	Membre** getMembres();
-	int getNbMembres();
-	int getCapaciteMembres();
-	Coupon** getCoupons();
-	int getNbCoupons();
-	int getCapaciteCoupons();
+	Membre** getMembres() const;
+	int getNbMembres() const;
+	int getCapaciteMembres() const;
+	Coupon** getCoupons() const;
+	int getNbCoupons() const;
+	int getCapaciteCoupons() const;
 
 	void ajouterMembre(const string& nomMembre);
 	void ajouterCoupon(const string& code, double rabais, int cout);
@@ -32,7 +38,7 @@ public:
 	double appliquerCoupon(Membre* membre, double prix);
 	void acheterCoupon(const string& nomMembre);
 
-	void afficherInfos();
+	void afficherInfos() const;
 private:
 	Membre** membres_;
 	int nbMembres_;

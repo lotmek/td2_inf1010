@@ -1,7 +1,12 @@
-/*
- * Date : 1 Septembre 2019
- * Auteur : Wassim Khene
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 1
+ * Nom: coupon.h
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #ifndef COUPON_H
 #define COUPON_H
@@ -21,16 +26,16 @@ public:
 	~Coupon();
 
 	// Getters
-	string getCode();
-	double getRabais();
-	int getCout();
+	string getCode() const;
+	double getRabais() const;
+	int getCout() const;
 
 	// Setters
 	void setCode(const string& code);
 	void setRabais(double rabais);
 	void setCout(int cout);
 
-	void afficherCoupon();
+	void afficherCoupon() const;
 private:
 	string code_;
 	double rabais_;

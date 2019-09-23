@@ -1,14 +1,31 @@
-/*
- * Date : 12 Septembre 2019
- * Auteur : Philippe CÔTÉ-MORNEAULT
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 2
+ * Nom: gestionnaire.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #include "gestionnaire.h"
 
+ /****************************************************************************
+  * Fonction:	 Gestionnaire::Gestionnaire
+  * Description: Constructeur par défaut.
+  * Paramètres:	aucun
+  * Retour:		aucun
+  ****************************************************************************/
 Gestionnaire::Gestionnaire()
 {
 }
 
+/****************************************************************************
+ * Fonction:	Gestionnaire::~Gestionnaire
+ * Description: Destructeur de gestionnaire, désaloue aussi la mémoire.
+ * Paramètres:	aucun
+ * Retour:		aucun
+ ****************************************************************************/
 Gestionnaire::~Gestionnaire()
 { 
 	for (unsigned i = 0; i < membres_.size(); i++) 
@@ -24,30 +41,66 @@ Gestionnaire::~Gestionnaire()
 	coupons_.clear();
 }
 
+/****************************************************************************
+ * Fonction:	Gestionnaire::getMembres
+ * Description: Retourne le vecteur des pointeurs vers les membres.
+ * Paramètres:	aucun
+ * Retour:		vector<Membre*> vecteur de pointeurs membres
+ ****************************************************************************/
 vector<Membre*> Gestionnaire::getMembres() const
 {
 	return membres_;
 }
 
-
+/****************************************************************************
+ * Fonction:	Gestionnaire::getCoupons
+ * Description: Retourne le vecteur de pointeurs coupons dans le gestionnaire.
+ * Paramètres:	aucun
+ * Retour:		vector<Coupon*> vecteur de pointeurs coupons
+ ****************************************************************************/
 vector<Coupon*> Gestionnaire::getCoupons() const
 {
 	return coupons_;
 }
 
-
+/****************************************************************************
+ * Fonction:	Gestionnaire::ajouterMembre
+ * Description: Ajoute un membre dans le vecteur de pointeurs membres du
+ *				gestionnaire. On alloue un espace mémoire pour le membre en 
+ *				parametre. Ainsi, on fera une deep copy, donc de la composition.
+ * Paramètres:	(const string&) nomMembre
+ * Retour:		aucun
+ ****************************************************************************/
 void Gestionnaire::ajouterMembre(const string& nomMembre)
 {
 	Membre* membre = new Membre(nomMembre);
 	membres_.push_back(membre);
 }
 
+/****************************************************************************
+ * Fonction:	Gestionnaire::ajouterCoupon
+ * Description: Ajoute un coupon dans le vecteur de pointeurs coupons du 
+ *				gestionnaire. On alloue un espace mémoire pour le coupon en 
+ *				parametre. Ainsi, on fera une deep copy, donc de la composition.
+ * Paramètres:	(const string&) code
+ *				(double) rabais
+ *				(int) cout
+ * Retour:		aucun
+ ****************************************************************************/
 void Gestionnaire::ajouterCoupon(const string& code, double rabais, int cout)
 {
 	Coupon* coupon = new Coupon(code, rabais, cout);
 	coupons_.push_back(coupon);
 }
 
+/****************************************************************************
+ * Fonction:	Gestionnaire::trouverMembre
+ * Description: Cherche un membre dans le vecteur de pointeurs membres du 
+ *				gestionnaire à l'aide du nom fourni en paramètre et de l'operateur ==
+ *				que l'on a surcharge dans la classe membre.
+ * Paramètres:	(const string&) nomMembre
+ * Retour:		(Membre*) le pointeur membre qui a le même nom que le paramètre
+ ****************************************************************************/
 Membre* Gestionnaire::trouverMembre(const string& nomMembre) const
 {
 	for (unsigned i = 0; i < membres_.size(); i++) {
@@ -61,6 +114,19 @@ Membre* Gestionnaire::trouverMembre(const string& nomMembre) const
 	return nullptr;
 }
 
+/****************************************************************************
+ * Fonction:	Gestionnaire::assignerBillet
+ * Description: Ajoute un billet dans le vecteur de pointeurs billets d'un membre.
+ *				Permet aussi d'appliquer un coupon pour baisser le prix du billet.
+ * Paramètres:	(const string&) nomMembre
+ *				(const string&) pnr
+ *				(double) prixBase
+ *				(const string&) od
+ *				(TarifBillet tarif)
+ *				(const string&) dateVol
+ *				(bool) utiliserCoupon)
+ * Retour:		aucun
+ ****************************************************************************/
 void Gestionnaire::assignerBillet(const string& nomMembre, const string& pnr, double prixBase, const string& od, TarifBillet tarif, const string& dateVol, bool utiliserCoupon)
 {
 	double prixReel;
@@ -79,6 +145,16 @@ void Gestionnaire::assignerBillet(const string& nomMembre, const string& pnr, do
 	membre->ajouterBillet(pnr, prixReel, od, tarif, dateVol);
 }
 
+/****************************************************************************
+ * Fonction:	Gestionnaire::appliquerCoupon
+ * Description: Calcule le meilleur coupon que possède le membre et retourne
+ *				la différence à appliquer. On utilise l'operateur > de la
+ *				classe coupon ainsi que l'operateur -= que nous avons surchargé dans 
+ *				la classe Membre
+ * Paramètres:	(Membre*) membre
+ *				(double) prix
+ * Retour:		(double) la différence à appliquer sur le prix
+ ****************************************************************************/
 double Gestionnaire::appliquerCoupon(Membre* membre, double prix)
 {
 	if (membre->getCoupons().size() == 0) {
@@ -101,6 +177,12 @@ double Gestionnaire::appliquerCoupon(Membre* membre, double prix)
 	return prix * meilleurCoupon->getRabais();
 }
 
+/****************************************************************************
+ * Fonction:	Gestionnaire::acheterCoupon
+ * Description: Achète un coupon pour un client (s'il a assez de points).
+ * Paramètres:	(const string&) nomMembre
+ * Retour:		aucun
+ ****************************************************************************/
 void Gestionnaire::acheterCoupon(const string& nomMembre)
 {
 	if (coupons_.size() == 0) {
@@ -138,7 +220,15 @@ void Gestionnaire::acheterCoupon(const string& nomMembre)
 	}
 }
 
-// TODO: Remplacer cette methode par l'operateur <<
+/****************************************************************************
+ * Fonction:	Gestionnaire::operator<<
+ * Description: Affiche les informations de tous les membres dans le vecteur de 
+ *				membres. On utilise la surcharge d'operateur pour que << renvoie
+ *				toutes les informations du membre et que << puisse être appelé
+ *				en cascade.
+ * Paramètres:	aucun
+ * Retour:		(ostream&) o
+ ****************************************************************************/
 ostream& operator<<(ostream& o, const Gestionnaire& gestionnaire)
 {
 	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";

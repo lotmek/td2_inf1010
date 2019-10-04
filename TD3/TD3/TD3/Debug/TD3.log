@@ -1,0 +1,9 @@
+﻿  gestionnaire.cpp
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td_inf1010\td3\td3\td3\membreregulier.h(12): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td_inf1010\td3\td3\td3\gestionnaire.cpp(14): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td_inf1010\td3\td3\td3\gestionnaire.cpp(18): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td_inf1010\td3\td3\td3\gestionnaire.cpp(56): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td_inf1010\td3\td3\td3\gestionnaire.cpp(96): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td_inf1010\td3\td3\td3\gestionnaire.cpp(161): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\lotfi\documents\cours poly\session 2 (automne 2019)\inf1010\td_inf1010\td3\td3\td3\gestionnaire.cpp(112): warning C4715: 'Gestionnaire::appliquerCoupon' : les chemins de contrôle ne retournent pas tous une valeur
+  TD3.vcxproj -> C:\Users\Lotfi\Documents\Cours Poly\Session 2 (Automne 2019)\INF1010\td_inf1010\TD3\TD3\Debug\TD3.exe

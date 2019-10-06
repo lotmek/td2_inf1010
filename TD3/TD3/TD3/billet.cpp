@@ -112,9 +112,9 @@ string Billet::formatTarif(TarifBillet tarif) const
 ostream& operator<<(ostream& o, const Billet& billet)
 {
 	o << "\t\t- Billet " << billet.pnr_ << " (Classe : " << billet.formatTarif(billet.tarif_) << ")" << endl;
-	o << left << "\t\t\t" << setw(11) << "- Passager " << ": " << billet.nomPassager_ << endl;
-	o << "\t\t\t" << setw(11) << "- Prix" << ": " << billet.prix_ << "$" << endl;
-	o << "\t\t\t" << setw(11) << "- Trajet" << ": " << billet.od_ << endl;
+	o << left << "\t\t\t" << setw(11) << "- Passager : " << billet.nomPassager_ << endl;
+	o << "\t\t\t" << setw(11) << "- Prix : " << billet.prix_ << "$" << endl;
+	o << "\t\t\t" << setw(11) << "- Trajet : " << billet.od_ << endl;
 
 	return o;
 }

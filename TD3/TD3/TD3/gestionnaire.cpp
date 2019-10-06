@@ -71,6 +71,8 @@ void Gestionnaire::assignerBillet(const string& nomMembre, const string& pnr, do
 	if (membre == nullptr) {
 		return;
 	}
+	if (typeBillet == Flight_Pass)
+		prixBase *= 10;
 
 	if (utiliserCoupon) {
 		prixReel = prixBase - appliquerCoupon(membre, prixBase);
@@ -78,6 +80,13 @@ void Gestionnaire::assignerBillet(const string& nomMembre, const string& pnr, do
 	else {
 		prixReel = prixBase;
 	}
+
+	if (membre->getTypeMembre() == Membre_Premium) {
+		MembrePremium * membrePrem = static_cast<MembrePremium*>(membre);
+		double rabais = membrePrem->getpointsCumulee() * 5 / 1000 / 100.0 >= 0.1 ? 0.1 : membrePrem->getpointsCumulee() / 1000 / 100.0;
+		prixReel -= prixReel * rabais;
+	}
+		
 	membre->ajouterBillet(pnr, prixReel, od, tarif, typeBillet, dateVol);
 }
 
@@ -94,7 +103,7 @@ double Gestionnaire::appliquerCoupon(Membre* membre, double prix)
 			Coupon* meilleurCoupon = membre0->getCoupons()[0];
 			vector<Coupon*> coupons = membre0->getCoupons();
 			for (int i = 1; i < coupons.size(); ++i) {
-				if (*coupons[i] > *meilleurCoupon) {
+				if (coupons[i]->getCout() >= meilleurCoupon->getCout()) {
 					meilleurCoupon = coupons[i];
 				}
 			}
@@ -135,7 +144,7 @@ void Gestionnaire::acheterCoupon(const string& nomMembre)
 					meilleurCoupon = coupons_[i];
 				}
 				// Sinon on compare si le coupon courant a un rabais superieur au meilleur coupon
-				else if (*coupons_[i] > *meilleurCoupon) {
+				else if (coupons_[i]->getRabais() > meilleurCoupon->getRabais()) {
 					meilleurCoupon = coupons_[i];
 				}
 			}
@@ -164,7 +173,7 @@ ostream& operator<<(ostream& o, const Gestionnaire& gestionnaire)
 		//if (gestionnaire.membres_[i]->getTypeMembre()==Membre_Premium)
 		switch (gestionnaire.membres_[i]->getTypeMembre()) {
 			case Membre_Occasionnel:
-				o << gestionnaire.membres_[i];	// !!!!!!!!!!!!!!!! ICI ON DOIT PASSSER UN POINTEUR ET NON UN SIMPLE MEMBRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				o << *gestionnaire.membres_[i];	// !!!!!!!!!!!!!!!! ICI ON DOIT PASSSER UN POINTEUR ET NON UN SIMPLE MEMBRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			break;
 
 			case Membre_Regulier:

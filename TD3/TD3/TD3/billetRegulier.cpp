@@ -21,6 +21,6 @@ ostream& operator<<(ostream& o, const BilletRegulier& billet)
 {
 	Billet billetO = Billet(billet.getPnr(), billet.getNomPassager(), billet.getPrix(), billet.getOd(), billet.getTarif(), billet.getTypeBillet());
 	o << billetO;
-	o << "\t\t\t" << setw(11) << "- Vol le" << ": " << billet.dateVol_ << endl;
+	o << "\t\t\t" << setw(11) << "- Vol le : " << billet.getDateVol() << endl;
 	return o;
 }

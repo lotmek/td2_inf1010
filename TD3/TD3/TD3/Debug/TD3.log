@@ -1,5 +1,2 @@
-﻿  membreRegulier.cpp
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membreregulier.cpp(37): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membreregulier.cpp(57): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membreregulier.cpp(86): warning C4018: '<' : incompatibilité signed/unsigned
+﻿  billet.cpp
   TD3.vcxproj -> C:\Users\Mathblin\Desktop\Polytechnique\automne 2019\INF1010\Travaux pratiques\td_inf1010\TD3\TD3\Debug\TD3.exe

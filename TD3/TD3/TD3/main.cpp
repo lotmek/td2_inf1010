@@ -323,7 +323,10 @@ int main() {
 		else
 			cout << "ECHEC" << endl;
 	}
-
+	//MembreRegulier * Lotfi = new MembreRegulier("John", Membre_Regulier); 
+	//Lotfi->modifierPoints(150); Lotfi->ajouterBillet("D4E5F6", 1000, "YUL - YVR", TarifBillet::Affaire, Flight_Pass, "2019-12-21");
+	BilletRegulier* blol = new BilletRegulier("A1B2C3", "Lotfi", 3000, "YUL - YYZ", TarifBillet::Premiere, "2019-12-21", Billet_Regulier);
+	cout << *blol << endl << endl;
 	cout << endl;
 	//// Affichage du programme
 	cout << *g;

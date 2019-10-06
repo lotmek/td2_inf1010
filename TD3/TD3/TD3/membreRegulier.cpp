@@ -18,10 +18,12 @@ vector<Coupon*> MembreRegulier::getCoupons() const
 
 void MembreRegulier::acheterCoupon(Coupon* coupon)
 {
-	//int coutAvecRabais = coupon->getCout() - coupon->getRabais()*coupon->getCout();  //On avait pas appliqué le rabais.   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	if (points_ > coupon->getCout()) {
+	int cout = coupon->getCout();
+	if (typeMembre_ == Membre_Premium)
+		cout -= coupon->getRabais()*cout;
+	if (points_ > cout) {
 		*this += coupon;
-		modifierPoints(-coupon->getCout());
+		modifierPoints(-cout);
 	}
 }
 

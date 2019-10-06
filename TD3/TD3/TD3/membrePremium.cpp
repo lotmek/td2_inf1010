@@ -35,10 +35,11 @@ void MembrePremium::ajouterBillet(const string& pnr, double prix, const string& 
 
 void MembrePremium::acheterCoupon(Coupon* coupon)
 {
-	double bonus = pointsCumules_ > 20000 ? 20 : pointsCumules_ / 1000;
-	Coupon* couponO = coupon;								// !!!!!!!!!!!!!!!!! On ne créé pas de deep copie, car aucun membre n'as de destructeur
-	couponO->setRabais(couponO->getRabais() + bonus/100.0);		// de coupon, c'est le Gestionnaire qui s'en occupe !!!!!!!!!!!!!!!
-	MembreRegulier::acheterCoupon(couponO);
+	double rabais = pointsCumules_/1000.0 /100.0 >= 0.2 ? 0.2 : pointsCumules_ / 1000.0 /100.0;		// A CHANGER ,, c'est pas les points cumules qui ont un maximum, mais le rabais.
+	double rabaisTemp = coupon->getRabais();
+	coupon->setRabais(rabais);		// de coupon, c'est le Gestionnaire qui s'en occupe !!!!!!!!!!!!!!!
+	MembreRegulier::acheterCoupon(coupon);
+	coupon->setRabais(rabaisTemp);
 }
 
 ostream& operator<<(ostream& os, const MembrePremium& membrePremium)

@@ -9,7 +9,7 @@
 #define MEMBRE_REGULIER_H
 
 
-#include "membre.h";
+#include "membre.h"
 
 class MembreRegulier : public Membre {
 public:

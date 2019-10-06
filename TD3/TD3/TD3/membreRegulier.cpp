@@ -2,7 +2,7 @@
 
 
 MembreRegulier::MembreRegulier(const string& nom, TypeMembre typeMembre)
-	:Membre(nom, typeMembre)
+	:Membre(nom, typeMembre), points_(0)    //ICI J'AI AJOUTÉ points_(0) , CAR ON NE L'AVAIT PAS MIS ERREURS 10, 13, 15 à 18, 28 à 30, 42, 43 CORRIGÉES !!!!!!!!!!!!!!!!!!!1
 {
 }
 
@@ -18,6 +18,7 @@ vector<Coupon*> MembreRegulier::getCoupons() const
 
 void MembreRegulier::acheterCoupon(Coupon* coupon)
 {
+	//int coutAvecRabais = coupon->getCout() - coupon->getRabais()*coupon->getCout();  //On avait pas appliqué le rabais.   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if (points_ > coupon->getCout()) {
 		*this += coupon;
 		modifierPoints(-coupon->getCout());

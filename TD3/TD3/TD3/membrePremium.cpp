@@ -36,8 +36,8 @@ void MembrePremium::ajouterBillet(const string& pnr, double prix, const string& 
 void MembrePremium::acheterCoupon(Coupon* coupon)
 {
 	double bonus = pointsCumules_ > 20000 ? 20 : pointsCumules_ / 1000;
-	Coupon* couponO = new Coupon(*coupon);
-	couponO->setRabais(couponO->getRabais() + bonus/100.0);
+	Coupon* couponO = coupon;								// !!!!!!!!!!!!!!!!! On ne créé pas de deep copie, car aucun membre n'as de destructeur
+	couponO->setRabais(couponO->getRabais() + bonus/100.0);		// de coupon, c'est le Gestionnaire qui s'en occupe !!!!!!!!!!!!!!!
 	MembreRegulier::acheterCoupon(couponO);
 }
 

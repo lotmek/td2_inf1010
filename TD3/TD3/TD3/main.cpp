@@ -170,18 +170,18 @@ int main() {
 		&& mr1->getCoupons()[2] == c2);
 
 	mr1->acheterCoupon(c1);
-	tests.push_back(mr1->getPoints() == 150
+	tests.push_back(mr1->getPoints() == 150												//TEST 30
 		&& mr1->getCoupons().size() == 4
 		&& mr1->getCoupons()[3] == c1);
 
 	//test 30-31 acheter coupons Membre Premium
 	mp1->acheterCoupon(c3);
-	tests.push_back(mp1->getCoupons().size() == 0);
+	tests.push_back(mp1->getCoupons().size() == 0);												//TEST 30?? OU 31?? ?????????????????????????
 
 
 	mp1->modifierPoints(632);
 	mp1->acheterCoupon(c3);
-	tests.push_back(mp1->getCoupons().size() == 1 && mp1->getPoints() == 11);
+	tests.push_back(mp1->getCoupons().size() == 1 && mp1->getPoints() == 11);				//ici 
 
 	// Tests 32 - 33: Operateur == 
 	tests.push_back(*mr1 == "Marc"

@@ -25,10 +25,14 @@ Membre::Membre(const Membre& membre) :
 	typeMembre_(membre.typeMembre_)
 {
 	for (int i = 0; i < membre.billets_.size(); ++i) {
-		BilletRegulier * billetReg = static_cast<BilletRegulier*>(membre.billets_[i]);
-		if (billets_[i]->getTypeBillet() != Membre_Regulier)
-			billetReg->setDateVol("0");
-		ajouterBillet(membre.billets_[i]->getPnr(), membre.billets_[i]->getPrix(), membre.billets_[i]->getOd(), membre.billets_[i]->getTarif(), membre.billets_[i]->getTypeBillet(), billetReg->getDateVol());
+		string dateVol = "";				// !!!!!!!!!!!!!!!!!!!!!!! C'est juste pour BIllet Regulier que dateVol change de valeur
+		//BilletRegulier * billetReg = static_cast<BilletRegulier*>(membre.billets_[i]);		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//if (billets_[i]->getTypeBillet() != Billet_Base)  //Cette Ligne n'a aucun sens, c'est juste billet_Regulier qui a un dateVol.
+		if (billets_[i]->getTypeBillet() == Billet_Regulier) {
+			BilletRegulier * billetReg = static_cast<BilletRegulier*>(membre.billets_[i]);
+			dateVol = billetReg->getDateVol();
+		}
+		ajouterBillet(membre.billets_[i]->getPnr(), membre.billets_[i]->getPrix(), membre.billets_[i]->getOd(), membre.billets_[i]->getTarif(), membre.billets_[i]->getTypeBillet(), dateVol);
 
 	}
 }
@@ -69,18 +73,20 @@ void Membre::utiliserBillet(const string& pnr)
 				FlightPass* flightpass = static_cast<FlightPass*>(billets_[i]);
 				flightpass->decrementeNbUtilisations();
 				if (flightpass->getNbUtilisationsRestante() == 0) {
+					delete billets_[i];
 					billets_[i] = billets_[billets_.size()-1];
-					delete billets_[billets_.size() - 1];
 					billets_.pop_back();
 				}
 			}
 
 			else {
-				billets_[i] = billets_[billets_.size() - 1];
-				delete billets_[billets_.size() - 1];
+				delete billets_[i];						//Ici on avait enlever le dernier élément, mais on chercher un billet précis!!!!!!
+				billets_[i] = billets_[billets_.size() - 1];		
 				billets_.pop_back();
 			}
 		}
+		else
+			cout << "Le billet n'a pas pu etre trouve dans la liste.\n";
 	}
 }
 
@@ -88,18 +94,24 @@ void Membre::utiliserBillet(const string& pnr)
 void Membre::ajouterBillet(const string& pnr, double prix, const string& od, TarifBillet tarif, TypeBillet typeBillet, const string& dateVol)
 {
 	Billet* billet = new Billet(pnr, nom_, prix, od, tarif, typeBillet);
-	FlightPass* flightpass = static_cast<FlightPass*>(billet);
-	BilletRegulier* billetReg = static_cast<BilletRegulier*>(billet);
+	FlightPass* flightpass = new FlightPass(pnr, nom_, prix, od, tarif, typeBillet);
+	BilletRegulier* billetReg = new BilletRegulier(pnr, nom_, prix, od, tarif, dateVol, typeBillet);
 	switch (typeBillet) {
 		case TypeBillet::Billet_Base : 
 			billets_.push_back(billet);
+			delete flightpass;
+			delete billetReg;
 			break;
 		case TypeBillet::Billet_Regulier :
 			billetReg->setDateVol(dateVol);
 			billets_.push_back(billetReg);
+			delete billet;
+			delete flightpass;
 			break;
 		case TypeBillet::Flight_Pass:
 			billets_.push_back(flightpass);
+			delete billet;
+			delete billetReg;
 			break;
 	}
 

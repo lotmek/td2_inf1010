@@ -12,7 +12,7 @@ string BilletRegulier::getDateVol() const
 	return dateVol_;
 }
 
-void BilletRegulier::setDateVol(string dateVol)
+void BilletRegulier::setDateVol(const string& dateVol)
 {
 	dateVol_ = dateVol;
 }

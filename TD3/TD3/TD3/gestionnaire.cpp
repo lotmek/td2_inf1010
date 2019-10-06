@@ -33,13 +33,13 @@ vector<Coupon*> Gestionnaire::getCoupons() const
 void Gestionnaire::ajouterMembre(const string& nomMembre, TypeMembre typeMembre)
 {
 	switch (typeMembre) {
-	case Membre_Occasionnel:
+	case TypeMembre::Membre_Occasionnel:
 		membres_.push_back(new Membre(nomMembre, typeMembre));
 		break;
-	case Membre_Regulier:
+	case TypeMembre::Membre_Regulier:
 		membres_.push_back(new MembreRegulier(nomMembre, typeMembre));
 		break;
-	case Membre_Premium:
+	case TypeMembre::Membre_Premium:
 		membres_.push_back(new MembrePremium(nomMembre));
 		break;
 	}
@@ -141,12 +141,12 @@ void Gestionnaire::acheterCoupon(const string& nomMembre)
 			}
 		}
 
-		if (membre->getTypeMembre() == Membre_Premium) {
+		if (membre->getTypeMembre() == Membre_Premium && meilleurCoupon != nullptr) {		//Même explication que ligne 149 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			MembrePremium* membre1 = static_cast<MembrePremium*>(membre0);
 			membre1->acheterCoupon(meilleurCoupon);
 		}
 
-		else
+		else if (meilleurCoupon != nullptr)		//Ici, il y a la possibilité que le pointeur soit null, voir ligne 134 et 127 pour comprendre !!!!!!!!!!!!!!!!!!!!!!!!
 			membre0->acheterCoupon(meilleurCoupon);
 	}
 
@@ -158,20 +158,23 @@ void Gestionnaire::acheterCoupon(const string& nomMembre)
 ostream& operator<<(ostream& o, const Gestionnaire& gestionnaire)
 {
 	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";
+	MembreRegulier* membreReg = nullptr;// = static_cast<MembreRegulier*>(gestionnaire.membres_[i]);
+	MembrePremium* membrePrem = nullptr;// = static_cast<MembrePremium*>(gestionnaire.membres_[i]);
 	for (int i = 0; i < gestionnaire.membres_.size(); i++) {
-		MembreRegulier* membreReg = static_cast<MembreRegulier*>(gestionnaire.membres_[i]);
-		MembrePremium* membrePrem = static_cast<MembrePremium*>(gestionnaire.membres_[i]);
+		//if (gestionnaire.membres_[i]->getTypeMembre()==Membre_Premium)
 		switch (gestionnaire.membres_[i]->getTypeMembre()) {
 			case Membre_Occasionnel:
-				o << *gestionnaire.membres_[i];
+				o << gestionnaire.membres_[i];	// !!!!!!!!!!!!!!!! ICI ON DOIT PASSSER UN POINTEUR ET NON UN SIMPLE MEMBRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			break;
 
 			case Membre_Regulier:
-				o << *membreReg;
+				membreReg = static_cast<MembreRegulier*>(gestionnaire.membres_[i]);
+				o << membreReg;				// !!!!!!!!!!!!!!!! ICI ON DOIT PASSSER UN POINTEUR ET NON UN SIMPLE MEMBRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			break;
 
 			case Membre_Premium:
-				o << *membrePrem;
+				membrePrem = static_cast<MembrePremium*>(gestionnaire.membres_[i]);
+				o << membrePrem;			// !!!!!!!!!!!!!!!! ICI ON DOIT PASSSER UN POINTEUR ET NON UN SIMPLE MEMBRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				break;
 		}
 

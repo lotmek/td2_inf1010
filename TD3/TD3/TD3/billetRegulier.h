@@ -17,7 +17,7 @@ public:
 	//à faire 
 	string getDateVol() const;
 	//à faire 
-	void setDateVol(string dateVol);
+	void setDateVol(const string& dateVol);
 
 	//à faire 
 	friend ostream& operator<<(ostream& o, const BilletRegulier& billet);

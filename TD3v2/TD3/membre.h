@@ -1,10 +1,12 @@
-/*
-* Titre : membre.h - Travail Pratique #3
-* Date : 20 Septembre 2019
-* Auteur : Jeffrey Lavallee
-*/
-
-
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 3
+ * Nom: membre.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 #ifndef MEMBRE_H
 #define MEMBRE_H
 
@@ -54,7 +56,7 @@ public:
 	Membre& operator=(const Membre& membre);
 
 	//à modifer
-	virtual void afficherMembre() const;
+	virtual void afficherMembre(ostream& o) const;
 	friend ostream& operator<<(ostream& o, const Membre& membre);
 protected:
 	string nom_;

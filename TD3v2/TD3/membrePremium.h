@@ -1,10 +1,12 @@
-/*
-* Titre : membrePremium.h - Travail Pratique #3
-* Date : 20 Septembre 2019
-* Auteur : Jeffrey Lavallee
-*/
-
-
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 3
+ * Nom: membre.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 #ifndef MEMBRE_PREMIUM_H
 #define MEMBRE_PREMIUM_H
 
@@ -35,7 +37,7 @@ public:
 	void acheterCoupon(Coupon* coupon);
 
 	//à faire
-	virtual void afficherMembre() const;
+	virtual void afficherMembre(ostream& o) const;
 
 private:
 	unsigned int joursRestants_;

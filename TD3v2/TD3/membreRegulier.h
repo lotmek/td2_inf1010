@@ -7,8 +7,15 @@
 
 #ifndef MEMBRE_REGULIER_H
 #define MEMBRE_REGULIER_H
-
-
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 3
+ * Nom: membre.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 #include "membre.h"
 
 class MembreRegulier : public Membre {
@@ -33,7 +40,7 @@ public:
 	double calculerPoints(Billet* billet) const;
 
 	//à faire
-	virtual void afficherMembre() const;
+	virtual void afficherMembre(ostream& o) const;
 
 protected:
 	int points_;

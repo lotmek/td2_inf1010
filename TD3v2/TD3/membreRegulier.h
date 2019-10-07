@@ -1,21 +1,15 @@
-/*
-* Titre : membreRegulier.h - Travail Pratique #3
-* Date : 20 Septembre 2019
-* Auteur : Jeffrey Lavallee
-*/
-
-
-#ifndef MEMBRE_REGULIER_H
-#define MEMBRE_REGULIER_H
 /**********************************************************************
  * Cours : INF1010
  * Travail pratique 3
- * Nom: membre.cpp
+ * Nom: membreRegulier.h
  * Auteurs:		 Lotfi		Meklati      1953909
  *			     Mathieu	Bussières    1882012
  * Equipe : 17
  * Groupe : 03
  **********************************************************************/
+
+#ifndef MEMBRE_REGULIER_H
+#define MEMBRE_REGULIER_H
 #include "membre.h"
 
 class MembreRegulier : public Membre {

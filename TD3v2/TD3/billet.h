@@ -1,7 +1,12 @@
-/*
- * Date : 12 Septembre 2019
- * Auteur : Philippe CÔTÉ-MORNEAULT
- */
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 3
+ * Nom: billet.h
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #ifndef BILLET_H
 #define BILLET_H
@@ -48,7 +53,7 @@ public:
 	string formatTarif(TarifBillet tarif) const;
 
 	//à modifer
-	virtual void afficherBillet() const;
+	virtual void afficherBillet(ostream& o) const;
 	friend ostream& operator<<(ostream& o, const Billet& billet);
 private:
 	string pnr_;

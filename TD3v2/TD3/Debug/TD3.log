@@ -1,25 +1,11 @@
-<<<<<<< HEAD
 ﻿  FlightPass.cpp
   billet.cpp
-  membre.cpp
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3v2\td3\membre.cpp(27): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3v2\td3\membre.cpp(42): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3v2\td3\membre.cpp(141): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3v2\td3\membre.cpp(147): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3v2\td3\membre.cpp(160): warning C4018: '<' : incompatibilité signed/unsigned
-  Génération de code en cours...
-  TD3.vcxproj -> C:\Users\Mathblin\Desktop\Polytechnique\automne 2019\INF1010\Travaux pratiques\td_inf1010\TD3v2\Debug\TD3.exe
-=======
-﻿  billet.cpp
   billetRegulier.cpp
   coupon.cpp
-  FlightPass.cpp
   gestionnaire.cpp
   main.cpp
   membre.cpp
   membrePremium.cpp
   membreRegulier.cpp
   Génération de code en cours...
-  LINK : D:\Progcpp\td_inf1010\TD3v2\Debug\TD3.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
   TD3.vcxproj -> D:\Progcpp\td_inf1010\TD3v2\Debug\TD3.exe
->>>>>>> origin/master

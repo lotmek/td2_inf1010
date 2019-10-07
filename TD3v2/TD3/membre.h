@@ -1,7 +1,7 @@
 /**********************************************************************
  * Cours : INF1010
  * Travail pratique 3
- * Nom: membre.cpp
+ * Nom: membre.h
  * Auteurs:		 Lotfi		Meklati      1953909
  *			     Mathieu	Bussières    1882012
  * Equipe : 17

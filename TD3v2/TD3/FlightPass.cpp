@@ -46,11 +46,11 @@ int FlightPass::getNbUtilisationsRestante() const
 /****************************************************************************
  * Fonction:	 FlightPass::afficherBillet
  * Description:  Fonction que l'on a ajoutee pour l'affichage des billets FlightPass
- * Paramètres:	 aucun
+ * Paramètres:	 ostream& o
  * Retour:		 aucun
  ****************************************************************************/
-void FlightPass::afficherBillet() const
+void FlightPass::afficherBillet(ostream& o) const
 {
-	Billet::afficherBillet();
-	cout << "\t\t\t" << setw(11) << "- Utilisations restantes" << ": " << nbUtilisationsRestante_ << endl;
+	Billet::afficherBillet(o);
+	o << "\t\t\t" << setw(11) << "- Utilisations restantes" << ": " << nbUtilisationsRestante_ << endl;
 }

@@ -1,1 +1,28 @@
-﻿  TD3.vcxproj -> D:\Progcpp\td_inf1010\TD3\TD3\Debug\TD3.exe
+﻿  FlightPass.cpp
+  billet.cpp
+  billetRegulier.cpp
+  coupon.cpp
+  gestionnaire.cpp
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\gestionnaire.cpp(14): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\gestionnaire.cpp(18): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\gestionnaire.cpp(56): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\gestionnaire.cpp(105): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\gestionnaire.cpp(172): warning C4018: '<' : incompatibilité signed/unsigned
+  main.cpp
+  membre.cpp
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membre.cpp(27): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membre.cpp(42): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membre.cpp(70): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membre.cpp(141): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membre.cpp(147): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membre.cpp(161): warning C4018: '<' : incompatibilité signed/unsigned
+  membrePremium.cpp
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membrepremium.cpp(33): warning C4244: 'argument' : conversion de 'double' en 'unsigned int', perte possible de données
+  membreRegulier.cpp
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membreregulier.cpp(23): warning C4244: '-=' : conversion de 'double' en 'int', perte possible de données
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membreregulier.cpp(40): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membreregulier.cpp(60): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\membreregulier.cpp(89): warning C4018: '<' : incompatibilité signed/unsigned
+  Génération de code en cours...
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td3\td3\td3\gestionnaire.cpp(121): warning C4715: 'Gestionnaire::appliquerCoupon' : les chemins de contrôle ne retournent pas tous une valeur
+  TD3.vcxproj -> C:\Users\Mathblin\Desktop\Polytechnique\automne 2019\INF1010\Travaux pratiques\td_inf1010\TD3\TD3\Debug\TD3.exe

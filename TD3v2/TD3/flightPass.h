@@ -1,9 +1,12 @@
-/*
-* Titre : membrePremium.h - Travail Pratique #3
-* Date : 20 Septembre 2019
-* Auteur : Jeffrey Lavallee
-*/
-
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 3
+ * Nom: flightPass.h
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 #ifndef FLIGHT_PASS_H
 #define FLIGHT_PASS_H
 
@@ -21,7 +24,7 @@ public:
 	 int getNbUtilisationsRestante() const;
 
 	 //à faire 
-	 virtual void afficherBillet() const;
+	 virtual void afficherBillet(ostream& o) const;
 
 private:
 	 int nbUtilisationsRestante_;

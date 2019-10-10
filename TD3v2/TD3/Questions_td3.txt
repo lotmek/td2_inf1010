@@ -1,0 +1,24 @@
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 3
+ * Nom: Question_td3.txt
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
+
+1. Pourquoi a-t-on besoin de l’attribut type_ dans la classe membre? Que ce serait-il passé
+s’il n’existait pas? 
+
+- L'attribut type permet de savoir si l'objet est d'une classe dérivée, dans notre cas il permet 
+  de distinguer les membres de la classe Membre, de la classe MembreRegulier et de la classe MembrePremium.
+  S'il n'existait pas, on aurait difficilement pu faire appel aux méthodes des autres classes.
+  On aurait tout de même pu vérifier la conversion en static_cast à chaque fois, mais cela aurait été coûteux 
+  et peu lisible.
+
+2. Quelle est l’importance de l’utilisation d’un static_cast ?
+
+- Le static_cast permet de "downcast" un objet d'une classe principale en une classe dérivée, s'il est initialement issu 
+  de cette classe dérivée. Ce qui permet d'accéder aux méthodes issues de cette classe.
+

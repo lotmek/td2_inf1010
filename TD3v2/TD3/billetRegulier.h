@@ -1,9 +1,12 @@
-/*
-* Titre : billetRegulier.h - Travail Pratique #3
-* Date : 20 Septembre 2019
-* Auteur : Jeffrey Lavallee
-*/
-
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 3
+ * Nom: billetRegulier.h
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 #ifndef BILLET_REGULIER_H
 #define BILLET_REGULIER_H
 #include "billet.h"
@@ -20,7 +23,7 @@ public:
 	void setDateVol(const string& dateVol);
 
 	//à faire 
-	virtual void afficherBillet() const;
+	virtual void afficherBillet(ostream& o) const;
 private:
 	string dateVol_;
 };

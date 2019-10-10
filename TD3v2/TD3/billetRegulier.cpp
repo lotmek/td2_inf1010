@@ -47,11 +47,11 @@ void BilletRegulier::setDateVol(const string& dateVol)
 /****************************************************************************
  * Fonction:	 BilletRegulier::afficherBillet
  * Description:  Fonction que l'on a ajoutee pour l'affichage des billets
- * Paramètres:	 aucun
+ * Paramètres:	 ostream& o
  * Retour:		 aucun
  ****************************************************************************/
-void BilletRegulier::afficherBillet() const
+void BilletRegulier::afficherBillet(ostream& o) const
 {
-	Billet::afficherBillet();
-	cout << "\t\t\t" << setw(11) << "- Vol le : " << dateVol_ << endl;
+	Billet::afficherBillet(o);
+	o << "\t\t\t" << setw(11) << "- Vol le : " << dateVol_ << endl;
 }

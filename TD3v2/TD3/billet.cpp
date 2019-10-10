@@ -209,17 +209,17 @@ string Billet::formatTarif(TarifBillet tarif) const
 }
 
 /****************************************************************************
- * Fonction:	 FlightPass::afficherBillet
+ * Fonction:	 Billet::afficherBillet
  * Description:  Fonction que l'on a ajoutee pour l'affichage des billets
- * Paramètres:	 aucun
+ * Paramètres:	 ostream& o
  * Retour:		 aucun
  ****************************************************************************/
-void Billet::afficherBillet() const {
+void Billet::afficherBillet(ostream& o) const {
 
-	cout << "\t\t- Billet " << pnr_ << " (Classe : " << formatTarif(tarif_) << ")" << endl;
-	cout << left << "\t\t\t" << setw(11) << "- Passager : " << nomPassager_ << endl;
-	cout << "\t\t\t" << setw(11) << "- Prix : " << prix_ << "$" << endl;
-	cout << "\t\t\t" << setw(11) << "- Trajet : " << od_ << endl;
+	o << "\t\t- Billet " << pnr_ << " (Classe : " << formatTarif(tarif_) << ")" << endl;
+	o << left << "\t\t\t" << setw(11) << "- Passager : " << nomPassager_ << endl;
+	o << "\t\t\t" << setw(11) << "- Prix : " << prix_ << "$" << endl;
+	o << "\t\t\t" << setw(11) << "- Trajet : " << od_ << endl;
 
 }
 
@@ -231,7 +231,7 @@ void Billet::afficherBillet() const {
  ****************************************************************************/
 ostream& operator<<(ostream& o, const Billet& billet)
 {
-	billet.afficherBillet();
+	billet.afficherBillet(o);
 
 	return o;
 }

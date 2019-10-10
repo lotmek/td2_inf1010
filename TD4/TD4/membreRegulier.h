@@ -26,11 +26,11 @@ public:
 
 	double calculerPoints(Billet* billet) const;
 	// TODO
-	bool peutAcheterCoupon(Coupon* coupon);
+	virtual bool peutAcheterCoupon(Coupon* coupon);
 	virtual void acheterCoupon(Coupon* coupon);
 
 	// TODO: Retirer cette fonction par afficher()
-	friend ostream& operator<<(ostream& os, const MembreRegulier& membreRegulier);
+	//friend ostream& operator<<(ostream& os, const MembreRegulier& membreRegulier);
 
 	// TODO
 	void afficher(ostream& o);

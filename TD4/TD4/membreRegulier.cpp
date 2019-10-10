@@ -54,6 +54,7 @@ void MembreRegulier::modifierPoints(int points)
 
 double MembreRegulier::calculerPoints(Billet* billet) const
 {
+	double retour;
 	double bonus = 0;
 	switch (billet->getTarif()) {
 	case TarifBillet::PremiumEconomie:
@@ -69,13 +70,14 @@ double MembreRegulier::calculerPoints(Billet* billet) const
 		break;
 	}
 
+
 	return billet->getPrix() * 0.10 + bonus;
 }
 
 // TODO
 bool MembreRegulier::peutAcheterCoupon(Coupon* coupon)
 {
-
+	return getPoints() >= coupon->getCout();
 }
 
 void MembreRegulier::acheterCoupon(Coupon* coupon)
@@ -87,19 +89,24 @@ void MembreRegulier::acheterCoupon(Coupon* coupon)
 }
 
 // TODO: Remplacer cette fonction par afficher()
-ostream& operator<<(ostream& os, const MembreRegulier& membreRegulier)
-{
-	os << static_cast<Membre>(membreRegulier);
-	os << "\t" << "- Points : " << membreRegulier.points_ << endl;
-	os << "\t" << "- Coupons :" << endl;
-	for (size_t i = 0; i < membreRegulier.coupons_.size(); ++i) {
-		os << *membreRegulier.coupons_[i];
-	}
-	return os << endl;
-}
+//ostream& operator<<(ostream& os, const MembreRegulier& membreRegulier)
+//{
+//	os << static_cast<Membre>(membreRegulier);
+//	os << "\t" << "- Points : " << membreRegulier.points_ << endl;
+//	os << "\t" << "- Coupons :" << endl;
+//	for (size_t i = 0; i < membreRegulier.coupons_.size(); ++i) {
+//		os << *membreRegulier.coupons_[i];
+//	}
+//	return os << endl;
+//}
 
 // TODO
 void MembreRegulier::afficher(ostream& o)
 {
-
+	Membre::afficher(o);
+	o << "\t" << "- Points : " << points_ << endl;
+	o << "\t" << "- Coupons :" << endl;
+	for (size_t i = 0; i < coupons_.size(); ++i) {
+		coupons_[i]->afficher(o);
+	}
 }

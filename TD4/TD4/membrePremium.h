@@ -26,7 +26,7 @@ public:
 	void ajouterBillet(Billet* billet) override;
 	double calculerCoutCoupon(Coupon* coupon);
 	// TODO
-	bool peutAcheterCoupon(Coupon* coupon);
+	bool peutAcheterCoupon(Coupon* coupon) override;
 	void acheterCoupon(Coupon* coupon) override;
 
 	// TODO: Retirer cette fonction par afficher()

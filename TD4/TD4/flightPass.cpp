@@ -23,20 +23,22 @@ void FlightPass::decrementeNbUtilisations()
 // TODO
 FlightPass* FlightPass::clone()
 {
-
+	return new FlightPass(pnr_, prix_, od_, tarif_);
 }
 
 // TODO : Remplacer cette fonction par la methode afficher()
-ostream& operator<<(ostream& o, const FlightPass& flightpass)
-{
-	o << static_cast<Billet>(flightpass);
-	o << "\t\t\t" << setw(11) << "- Utilisation restantes" << ": " << flightpass.nbUtilisationsRestante_ << endl;
-
-	return;
-}
+//ostream& operator<<(ostream& o, const FlightPass& flightpass)
+//{
+//	o << static_cast<Billet>(flightpass);
+//	o << "\t\t\t" << setw(11) << "- Utilisation restantes" << ": " << flightpass.nbUtilisationsRestante_ << endl;
+//
+//	return;
+//}
 
 // TODO
 void FlightPass::afficher(ostream& o)
 {
+	Billet::afficher(o);
+	o << "\t\t\t" << setw(11) << "- Utilisation restantes" << ": " << nbUtilisationsRestante_ << endl;
 
 }

@@ -24,20 +24,21 @@ void BilletRegulier::setDateVol(string dateVol)
 // TODO
 BilletRegulier* BilletRegulier::clone()
 {
-
+	return new BilletRegulier(pnr_, prix_, od_, tarif_, dateVol_);
 }
 
 // TODO : Remplacer cette fonction par la methode afficher()
-ostream& operator<<(ostream& o, const BilletRegulier& billet)
-{
-	o << static_cast<Billet>(billet);
-	o << "\t\t\t" << setw(11) << "- Vol le" << ": " << billet.dateVol_ << endl;
-
-	return o;
-}
+//ostream& operator<<(ostream& o, const BilletRegulier& billet)
+//{
+//	o << static_cast<Billet>(billet);
+//	o << "\t\t\t" << setw(11) << "- Vol le" << ": " << billet.dateVol_ << endl;
+//
+//	return o;
+//}
 
 // TODO
 void BilletRegulier::afficher(ostream& o)
 {
-
+	Billet::afficher(o);
+	o << "\t\t\t" << setw(11) << "- Vol le" << ": " << dateVol_ << endl;
 }

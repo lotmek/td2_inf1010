@@ -19,19 +19,18 @@ public:
 
 	// Getter
 	string getDateVol() const;
-
 	// Setter
 	void setDateVol(string dateVol);
 
 	// TODO
-	BilletRegulier* clone();
+	virtual BilletRegulier* clone();
 
 	// TODO : Remplacer cette fonction par la methode afficher()
-	friend ostream& operator<<(ostream& o, const BilletRegulier& billet);
+	//friend ostream& operator<<(ostream& o, const BilletRegulier& billet);
 
 	// TODO
-	void afficher(ostream& o);
-private:
+	virtual void afficher(ostream& o);
+protected:
 	string dateVol_;
 };
 #endif // !BILLET_REGULIER_H

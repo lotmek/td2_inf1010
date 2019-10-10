@@ -11,8 +11,8 @@
 #include <vector>
 #include <iomanip>
 
-#include "flightPass.h"
-#include "billetRegulier.h"
+#include "flightPassSolde.h"
+#include "billetRegulierSolde.h"
 #include "coupon.h"
 
 using namespace std;
@@ -46,7 +46,7 @@ public:
 	Membre& operator=(const Membre& membre);
 
 	// TODO : Remplacer cette fonction par la methode afficher()
-	friend ostream& operator<<(ostream& o, const Membre& membre);
+	//friend ostream& operator<<(ostream& o, const Membre& membre);
 
 	// TODO
 	void afficher(ostream& o);

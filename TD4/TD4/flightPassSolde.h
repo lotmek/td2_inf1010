@@ -22,13 +22,13 @@ public:
 
 	// Getter
 	// TODO
-	double getPrix();
-	double getPrixBase();
+	double getPrix() const override;
+	double getPrixBase() const;
 
 	// TODO
-	FlightPassSolde* clone();
+	FlightPassSolde* clone() override;
 
 	// TODO
-	void afficher(ostream& o);
+	void afficher(ostream& o) override;
 };
 #endif // !FLIGHT_PASS_SOLDE_H

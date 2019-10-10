@@ -63,31 +63,38 @@ void Gestionnaire::assignerBillet(Billet* billet, const string& nomMembre, bool 
 		return;
 	}
 
-	double prix = billet->getPrix();
+	double prix = 0;
 
+	//On vérifie si le billet est soldé, dans ce cas on veut que prix corresponde au prix de base
+	if (auto billetreg = dynamic_cast<BilletRegulierSolde*>(billet)) {
+		prix = billetreg->getPrixBase();
+	}
+
+	else if (auto flightpass = dynamic_cast<FlightPassSolde*>(billet)) {
+		prix = flightpass->getPrixBase();
+	}
+
+	else
+		prix = billet->getPrix();
+
+	//On vérifie si on utilise un coupon
 	if (utiliserCoupon) {
 		prix -= appliquerCoupon(membre, prix);
 	}
 
-	switch (membre->getTypeMembre()) {
-	case Membre_Premium:
-		double rabais = 0.005 * static_cast<MembrePremium*>(membre)->getpointsCumulee() / 1000;
+	//On vérifie si le membre est premium, dans ce cas on utilise un rabais
+	if (auto membrePremium = dynamic_cast<MembrePremium*>(membre)) {
+		double rabais = 0.005 * membrePremium->getpointsCumulee() / 1000;
 		if (rabais > 0.1)
 			rabais = 0.1;
 
 		prix *= (1 - rabais);
-		billet->setPrix(prix);
-		static_cast<MembrePremium*>(membre)->ajouterBillet(billet);
-		break;
-	case Membre_Occasionnel:
-		billet->setPrix(prix);
-		membre->ajouterBillet(billet);
-		break;
-	case Membre_Regulier:
-		billet->setPrix(prix);
-		static_cast<MembreRegulier*>(membre)->ajouterBillet(billet);
-		break;
 	}
+
+
+	
+	billet->setPrix(prix);
+	membre->ajouterBillet(billet);
 	
 }
 
@@ -156,40 +163,68 @@ void Gestionnaire::acheterCoupon(const string& nomMembre)
 // TODO
 double Gestionnaire::calculerRevenu()
 {
-	
+	double somme = 0;
+	for (size_t i = 0; i < membres_.size(); i++)
+	{
+		for (size_t j = 0; j < membres_[i]->getBillets().size(); j++)
+		{
+			somme += membres_[i]->getBillets()[j]->getPrix();
+		}
+	}
+
+	return somme;
 }
 
 // TODO
 int Gestionnaire::calculerNombreBilletsEnSolde()
 {
-
-}
-
-// TODO: Retirer cette fonction par afficher()
-ostream& operator<<(ostream& o, const Gestionnaire& gestionnaire)
-{
-	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";
-
-	for (int i = 0; i < gestionnaire.membres_.size(); ++i) {
-		switch (gestionnaire.membres_[i]->getTypeMembre())
+	int nbBilletsSoldes = 0;
+	for (size_t i = 0; i < membres_.size(); i++)
+	{
+		for (size_t j = 0; j < membres_[i]->getBillets().size(); j++)
 		{
-		case Membre_Premium:
-			o << *static_cast<MembrePremium*>(gestionnaire.membres_[i]);
-			break;
-		case Membre_Occasionnel:
-			o << *gestionnaire.membres_[i];
-			break;
-		case Membre_Regulier:
-			o << *static_cast<MembreRegulier*>(gestionnaire.membres_[i]);
-			break;
+			
+			if(auto flightpassSolde = dynamic_cast<FlightPassSolde*>(membres_[i]->getBillets()[j]))
+				nbBilletsSoldes++;
+
+			else if (auto billetRegSolde = dynamic_cast<BilletRegulierSolde*>(membres_[i]->getBillets()[j]))
+				nbBilletsSoldes++;
 		}
 	}
 
-	return o;
+	return nbBilletsSoldes;
 }
+
+// TODO: Retirer cette fonction par afficher()
+//ostream& operator<<(ostream& o, const Gestionnaire& gestionnaire)
+//{
+//	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";
+//
+//	for (int i = 0; i < gestionnaire.membres_.size(); ++i) {
+//		switch (gestionnaire.membres_[i]->getTypeMembre())
+//		{
+//		case Membre_Premium:
+//			o << *static_cast<MembrePremium*>(gestionnaire.membres_[i]);
+//			break;
+//		case Membre_Occasionnel:
+//			o << *gestionnaire.membres_[i];
+//			break;
+//		case Membre_Regulier:
+//			o << *static_cast<MembreRegulier*>(gestionnaire.membres_[i]);
+//			break;
+//		}
+//	}
+//
+//	return o;
+//}
 	
 // TODO
 void Gestionnaire::afficher(ostream& o)
 {
-	
+	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";
+
+	for (size_t i = 0; i < membres_.size(); ++i) {
+		membres_[i]->afficher(o);
+	}
+
 }

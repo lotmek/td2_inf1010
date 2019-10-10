@@ -22,13 +22,13 @@ public:
 
 	// Getter
 	// TODO
-	double getPrix();
-	double getPrixBase();
+	double getPrix() const override;
+	double getPrixBase() const;
 
 	// TODO
-	BilletRegulierSolde* clone();
+	BilletRegulierSolde* clone() override;
 
 	// TODO
-	void afficher(ostream& o);
+	void afficher(ostream& o) override;
 };
 #endif // !BILLET_REGULIER_SOLDE_H

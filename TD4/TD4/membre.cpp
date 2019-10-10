@@ -21,17 +21,7 @@ Membre::Membre(const Membre& membre) :
 	nom_(membre.nom_)
 {
 	for (size_t i = 0; i < membre.billets_.size(); ++i) {
-		switch (membre.billets_[i]->getTypeBillet()) {
-		case TypeBillet::Billet_Base:
-			billets_.push_back(new Billet(*membre.billets_[i]));
-			break;
-		case TypeBillet::Billet_Regulier:
-			billets_.push_back(new BilletRegulier(*static_cast<BilletRegulier*>(membre.billets_[i])));
-			break;
-		case TypeBillet::Flight_Pass:
-			billets_.push_back(new FlightPass(*static_cast<FlightPass*>(membre.billets_[i])));
-			break;
-		}
+		billets_.push_back(membre.billets_[i]->clone());
 	}
 }
 
@@ -73,10 +63,9 @@ void Membre::utiliserBillet(const string& pnr)
 		return;
 	}
 
-	if (billets_[indexTrouve]->getTypeBillet() == Flight_Pass) {
-		FlightPass* flightPass = static_cast<FlightPass*>(billets_[indexTrouve]);
-		flightPass->decrementeNbUtilisations();
-		if (flightPass->getNbUtilisationsRestante() > 0) {
+	if (auto flightpass = dynamic_cast<FlightPass*>(billets_[indexTrouve])) {
+		flightpass->decrementeNbUtilisations();
+		if (flightpass->getNbUtilisationsRestante() > 0) {
 			return;
 		}
 	}
@@ -115,17 +104,7 @@ Membre& Membre::operator=(const Membre& membre)
 		billets_.clear();
 
 		for (size_t i = 0; i < membre.billets_.size(); ++i) {
-			switch (membre.billets_[i]->getTypeBillet()) {
-			case TypeBillet::Billet_Base:
-				billets_.push_back(new Billet(*membre.billets_[i]));
-				break;
-			case TypeBillet::Billet_Regulier:
-				billets_.push_back(new BilletRegulier(*static_cast<BilletRegulier*>(membre.billets_[i])));
-				break;
-			case TypeBillet::Flight_Pass:
-				billets_.push_back(new FlightPass(*static_cast<FlightPass*>(membre.billets_[i])));
-				break;
-			}
+			billets_.push_back(membre.billets_[i]->clone());
 		}
 	}
 
@@ -133,29 +112,34 @@ Membre& Membre::operator=(const Membre& membre)
 }
 
 // TODO : Remplacer cette fonction par la methode afficher()
-ostream& operator<<(ostream& o, const Membre& membre)
-{
-	o << setfill(' ');
-	o << "- Membre " << membre.nom_ <<":" << endl;
-	o << "\t" << "- Billets :" << endl;
-	for (size_t i = 0; i < membre.billets_.size(); i++) {
-		switch (membre.billets_[i]->getTypeBillet()) {
-		case Billet_Base:
-			o << *static_cast<Billet*>(membre.billets_[i]);
-			break;
-		case Billet_Regulier:
-			o << *static_cast<BilletRegulier*>(membre.billets_[i]);
-			break;
-		case Flight_Pass:
-			o << *static_cast<FlightPass*>(membre.billets_[i]);
-			break;
-		}
-	}
-	return o << endl;
-}
+//ostream& operator<<(ostream& o, const Membre& membre)
+//{
+//	o << setfill(' ');
+//	o << "- Membre " << membre.nom_ <<":" << endl;
+//	o << "\t" << "- Billets :" << endl;
+//	for (size_t i = 0; i < membre.billets_.size(); i++) {
+//		switch (membre.billets_[i]->getTypeBillet()) {
+//		case Billet_Base:
+//			o << *static_cast<Billet*>(membre.billets_[i]);
+//			break;
+//		case Billet_Regulier:
+//			o << *static_cast<BilletRegulier*>(membre.billets_[i]);
+//			break;
+//		case Flight_Pass:
+//			o << *static_cast<FlightPass*>(membre.billets_[i]);
+//			break;
+//		}
+//	}
+//	return o << endl;
+//}
 
 // TODO
 void Membre::afficher(ostream& o)
 {
-
+	o << setfill(' ');
+	o << "- Membre " << nom_ << ":" << endl;
+	o << "\t" << "- Billets :" << endl;
+	for (size_t i = 0; i < billets_.size(); i++) {
+		billets_[i]->afficher(o);
+	}
 }

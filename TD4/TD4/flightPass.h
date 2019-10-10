@@ -20,14 +20,14 @@ public:
 	void decrementeNbUtilisations();
 
 	// TODO
-	FlightPass* clone();
+	virtual FlightPass* clone();
 
 	// TODO : Remplacer cette fonction par la methode afficher()
-	friend ostream& operator<<(ostream& o, const FlightPass& flightpass);
+	//friend ostream& operator<<(ostream& o, const FlightPass& flightpass);
 
 	// TODO
-	void afficher(ostream& o);
-private:
+	virtual void afficher(ostream& o);
+protected:
 	 int nbUtilisationsRestante_;
 };
 #endif // !FLIGHT_PASS_H

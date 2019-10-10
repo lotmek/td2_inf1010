@@ -8,29 +8,32 @@
 
 // TODO
 FlightPassSolde::FlightPassSolde(const string& pnr, double prix, const string& od, TarifBillet tarif, double pourcentageSolde)
+	:FlightPass(pnr, prix, od, tarif),
+	Solde(pourcentageSolde)
 {
 }
 
 // TODO
-double FlightPassSolde::getPrix()
+double FlightPassSolde::getPrix() const
 {
-	
+	return (1 - pourcentageSolde_) * prix_;
 }
 
 // TODO
-double FlightPassSolde::getPrixBase()
+double FlightPassSolde::getPrixBase() const
 {
-
+	return prix_;
 }
 
 // TODO
 FlightPassSolde* FlightPassSolde::clone()
 {
-	
+	return new FlightPassSolde(pnr_, prix_, od_, tarif_, pourcentageSolde_);
 }
 
 // TODO
 void FlightPassSolde::afficher(ostream& o)
 {
-	
+	FlightPass::afficher(o);
+	o << "\t\t\t" << setw(11) << "- Pourcentage solde" << ": " << pourcentageSolde_ << "%" << endl;
 }

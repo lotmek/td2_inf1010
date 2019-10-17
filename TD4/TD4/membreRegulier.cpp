@@ -1,32 +1,67 @@
-/*
-* Titre : membreRegulier.cpp - Travail Pratique #4
-* Date : 5 Octobre 2019
-* Auteur : Philippe CÔTÉ-MORNEAULT
-*/
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 4
+ * Nom: membreRegulier.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #include "membreRegulier.h"
 
+ /****************************************************************************
+  * Fonction:	MembreRegulier::MembreRegulier
+  * Description: Constructeur par paramètres.
+  * Paramètres:	(const string& nom)
+  * Retour:		aucun
+  ****************************************************************************/
 MembreRegulier::MembreRegulier(const string& nom) : 
 	Membre(nom), points_(0)
 {
 }
 
+/****************************************************************************
+ * Fonction:	MembreRegulier::getPoints
+ * Description: Fournit les points.
+ * Paramètres:	aucun
+ * Retour:		(int) Les points du membre
+ ****************************************************************************/
 int MembreRegulier::getPoints() const
 {
 	return points_;
 }
 
+/****************************************************************************
+ * Fonction:	MembreRegulier::getCoupons
+ * Description: Fournit le tableau de coupons.
+ * Paramètres:	aucun
+ * Retour:		vector<Coupon*> vecteur de coupons
+ ****************************************************************************/
 vector<Coupon*> MembreRegulier::getCoupons() const
 {
 	return coupons_;
 }
 
+/****************************************************************************
+ * Fonction:	MembreRegulier::ajouterBillet
+ * Description: Ajoute le billet en parametre a la fin du vecteur billet du 
+ *				membre. En plus, le nombre de points est modifier.
+ * Paramètres:	Billet* billet
+ * Retour:		aucun
+ ****************************************************************************/
 void MembreRegulier::ajouterBillet(Billet* billet)
 {
 	Membre::ajouterBillet(billet);
 	modifierPoints(calculerPoints(billets_.back()));
 }
 
+/****************************************************************************
+ * Fonction:	MembreRegulier::operator+=
+ * Description:	Surcharge l'opérateur += pour ajouter un pointeur coupon dans le vecteur coupons_
+ * Paramètres:	(Coupon* coupon)
+ * Retour:		MembreRegulier& membre
+ ****************************************************************************/
 Membre& MembreRegulier::operator+=(Coupon* coupon)
 {
 	coupons_.push_back(coupon);
@@ -34,6 +69,12 @@ Membre& MembreRegulier::operator+=(Coupon* coupon)
 	return *this;
 }
 
+/****************************************************************************
+ * Fonction:	MembreRegulier::operator-=
+ * Description:	Surcharge l'opérateur -= pour retirer un pointeur coupon du vecteur coupons_
+ * Paramètres:	(Coupon* coupon)
+ * Retour:		Membre& membre
+ ****************************************************************************/
 Membre& MembreRegulier::operator-=(Coupon* coupon)
 {
 	for (size_t i = 0; i < coupons_.size(); ++i) {
@@ -47,11 +88,23 @@ Membre& MembreRegulier::operator-=(Coupon* coupon)
 	return *this;
 }
 
+/****************************************************************************
+ * Fonction:	MembreRegulier::modifierPoints
+ * Description: Modificateur de points.
+ * Paramètres:	(int) points
+ * Retour:		aucun
+ ****************************************************************************/
 void MembreRegulier::modifierPoints(int points)
 {
 	points_ += points;
 }
 
+/****************************************************************************
+ * Fonction:	MembreRegulier::calculerPoints
+ * Description:	Calcule le nombre de points incluant les points bonus selon la classe du billet.
+ * Paramètres:	(Billet* billet)
+ * Retour:		(double) nombre de points
+ ****************************************************************************/
 double MembreRegulier::calculerPoints(Billet* billet) const
 {
 	double bonus = 0;
@@ -72,7 +125,13 @@ double MembreRegulier::calculerPoints(Billet* billet) const
 	return billet->getPrix() * 0.10 + bonus;
 }
 
-// TODO
+/****************************************************************************
+ * Fonction:	MembreRegulier::peutAcheterCoupon
+ * Description:	Verifie si le membreRegulier possede suffisamment de points pour
+ *				acheter le coupon en parametre.
+ * Paramètres:	(Coupon* coupon)
+ * Retour:		bool vrai ou faux
+ ****************************************************************************/
 bool MembreRegulier::peutAcheterCoupon(Coupon* coupon)
 {
 	if (points_ >= coupon->getCout())
@@ -80,6 +139,13 @@ bool MembreRegulier::peutAcheterCoupon(Coupon* coupon)
 	return false;
 }
 
+/****************************************************************************
+ * Fonction:	MembreRegulier::acheterCoupon
+ * Description:	Ajoute le coupon(achète) si le membre possède assez de points. 
+ *				Applique un rabais aux membres premiums.
+ * Paramètres:	(Coupon* coupon)
+ * Retour:		aucun
+ ****************************************************************************/
 void MembreRegulier::acheterCoupon(Coupon* coupon)
 {
 	if (peutAcheterCoupon(coupon)) {
@@ -88,10 +154,14 @@ void MembreRegulier::acheterCoupon(Coupon* coupon)
 	}
 }
 
-// TODO
+/****************************************************************************
+ * Fonction:	MembreRegulier::afficher
+ * Description:	Affiche les informations du membre regulier
+ * Paramètres:	ostream& o
+ * Retour:		aucun
+ ****************************************************************************/
 void MembreRegulier::afficher(ostream& o) const
 {
-	//o << static_cast<Membre>(membreRegulier);				// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	Membre::afficher(o);
 	o << "\t" << "- Points : " << points_ << endl;
 	o << "\t" << "- Coupons :" << endl;

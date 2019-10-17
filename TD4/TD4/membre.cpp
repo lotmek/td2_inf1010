@@ -1,22 +1,43 @@
-/*
-* Titre : membre.cpp - Travail Pratique #4
-* Date : 5 Octobre 2019
-* Auteur : Philippe CÔTÉ-MORNEAULT
-*/
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 4
+ * Nom: membre.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #include "membre.h"
 
+ /****************************************************************************
+  * Fonction:	Membre::Membre
+  * Description: Constructeur par défaut.
+  * Paramètres:	aucun
+  * Retour:		aucun
+  ****************************************************************************/
 Membre::Membre() :
 	nom_("")
 {
 }
 
+/****************************************************************************
+ * Fonction:	Membre::Membre
+ * Description: Constructeur par paramètres.
+ * Paramètres:	(const string&) nom
+ * Retour:		aucun
+ ****************************************************************************/
 Membre::Membre(const string& nom) :
 	nom_(nom)
 {
 }
 
-// TODO
+/****************************************************************************
+ * Fonction:	Membre::Membre
+ * Description: Constructeur par copie.
+ * Paramètres:	(const Membre&) Membre
+ * Retour:		aucun
+ ****************************************************************************/
 Membre::Membre(const Membre& membre) :
 	nom_(membre.nom_)
 {
@@ -30,6 +51,12 @@ Membre::Membre(const Membre& membre) :
 	}
 }
 
+/****************************************************************************
+ * Fonction:	Membre::~Membre
+ * Description: Destructeur, détruit le membre du système.
+ * Paramètres:	aucun
+ * Retour:		aucun
+ ****************************************************************************/
 Membre::~Membre()
 {
 	for (size_t i = 0; i < billets_.size(); ++i) {
@@ -37,22 +64,45 @@ Membre::~Membre()
 	}
 }
 
+/****************************************************************************
+ * Fonction:	Membre::getNom
+ * Description: Fournit le nom.
+ * Paramètres:	aucun
+ * Retour:		(string) Nom du membre
+ ****************************************************************************/
 string Membre::getNom() const
 {
 	return nom_;
 }
 
+/****************************************************************************
+ * Fonction:	Membre::getBillets
+ * Description: Fournit les billets.
+ * Paramètres:	aucun
+ * Retour:		vector<Billet*> vecteur de billets
+ ****************************************************************************/
 vector<Billet*> Membre::getBillets() const
 {
 	return billets_;
 }
 
+/****************************************************************************
+ * Fonction:	Membre::setNom
+ * Description: Modificateur de nom.
+ * Paramètres:	(const string& nom)
+ * Retour:		aucun
+ ****************************************************************************/
 void Membre::setNom(const string& nom)
 {
 	nom_ = nom;
 }
 
-// TODO
+/**********************************************************************************************
+ * Fonction:	Membre::utiliserBillet
+ * Description:	Retire un billet ou décrémente son nombre d'utilisation si c'est un flightpass.
+ * Paramètres:	(const string& pnr)
+ * Retour:		aucun
+ **********************************************************************************************/
 void Membre::utiliserBillet(const string& pnr)
 {
 	int indexTrouve = -1;
@@ -79,23 +129,49 @@ void Membre::utiliserBillet(const string& pnr)
 	billets_.pop_back();
 }
 
+/****************************************************************************
+ * Fonction:	Membre::ajouterBillet
+ * Description:	Ajoute un pointeur billet dans le vecteur.
+ * Paramètres:	(Billet* billet)
+ * Retour:		aucun
+ ****************************************************************************/
 void Membre::ajouterBillet(Billet* billet)
 {
 	billet->setNomPassager(nom_);
 	billets_.push_back(billet);
 }
 
+/****************************************************************************
+ * Fonction:	Membre::operator==
+ * Description:	Surcharge l'operateur == (operande de gauche est un membre et droite est un string)
+ *				Compare les noms.
+ * Paramètres:	const string& nomMembre
+ * Retour:		bool vrai ou faux
+ ****************************************************************************/
 bool Membre::operator==(const string& nomMembre) const
 {
 	return nom_ == nomMembre;
 }
 
+/****************************************************************************
+ * Fonction:	friend operator==
+ * Description:	Surcharge l'operateur == (operande de gauche est un string et droite est un membre)
+ *				Compare les noms.
+ * Paramètres:	(const string& nomMembre, const Membre& membre)
+ * Retour:		bool vrai ou faux
+ ****************************************************************************/
 bool operator==(const string& nomMembre, const Membre& membre)
 {
 	return nomMembre == membre.nom_;
 }
 
-// TODO
+/****************************************************************************
+ * Fonction:	Membre::operator=
+ * Description:	Surcharge l'operateur =
+ *				Ecrase les attributs d'un membre et les remplace par ceux de l'autre
+ * Paramètres:	(const Membre& membre)
+ * Retour:		Membre& membre final avec les attributs du membre passé en paramètre
+ ****************************************************************************/
 Membre& Membre::operator=(const Membre& membre)
 {
 	if (this != &membre) {
@@ -116,7 +192,12 @@ Membre& Membre::operator=(const Membre& membre)
 }
 
 
-// TODO
+/****************************************************************************
+ * Fonction:	Membre::afficher
+ * Description:	Affiche les informations du membre, dont les billets dépendemment de leurs classes.
+ * Paramètres:	ostream& o
+ * Retour:		aucun
+ ****************************************************************************/
 void Membre::afficher(ostream& o) const
 {
 	o << setfill(' ');

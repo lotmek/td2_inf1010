@@ -1,13 +1,11 @@
-﻿  billetRegulier.cpp
-  billetRegulierSolde.cpp
-  gestionnaire.cpp
+﻿  gestionnaire.cpp
 c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td4\td4\gestionnaire.cpp(192): warning C4018: '<' : incompatibilité signed/unsigned
   main.cpp
   membre.cpp
   membrePremium.cpp
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td4\td4\membrepremium.cpp(37): warning C4244: 'argument' : conversion de 'double' en 'unsigned int', perte possible de données
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td4\td4\membrepremium.cpp(62): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td4\td4\membrepremium.cpp(78): warning C4244: 'argument' : conversion de 'double' en 'unsigned int', perte possible de données
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td4\td4\membrepremium.cpp(123): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
   membreRegulier.cpp
-c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td4\td4\membreregulier.cpp(27): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
+c:\users\mathblin\desktop\polytechnique\automne 2019\inf1010\travaux pratiques\td_inf1010\td4\td4\membreregulier.cpp(56): warning C4244: 'argument' : conversion de 'double' en 'int', perte possible de données
   Génération de code en cours...
   TD4.vcxproj -> C:\Users\Mathblin\Desktop\Polytechnique\automne 2019\INF1010\Travaux pratiques\td_inf1010\TD4\Debug\TD4.exe

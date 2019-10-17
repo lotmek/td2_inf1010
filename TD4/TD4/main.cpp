@@ -1,16 +1,33 @@
-/*
-* Titre : main.cpp - Travail Pratique #4
-* Date : 5 Octobre 2019
-* Auteur : Philippe CÔTÉ-MORNEAULT
-*/
+/**************************************************************************************
+ * Cours : INF1010
+ * Travail pratique 4
+ * Nom: main.cpp  que nous n'avons pas modifié, excepté pour les réponses aux questions
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **************************************************************************************/
 
 /* REPONSES AUX QUESTIONS
 
 1.	Nous remarquons que le classe Solde à une méthode sans implémentation, getPrixBase(). Dans le contexte du polymorphisme, 
     quelle est l’utilité d’avoir une méthode dans une classe parent qui ne possède aucune implémentation?
 
+		Dans le cas de Solde, getPrixBase() = 0, est egale a zero. Ceci sert a declarer la methode virtuelle pure et, 
+		consequemment, la classe abstraite. On appelle les methodes de la classe derivee au lieu de celle de la classe parent.
+		Aucun objet ne pourra etre instancier de la classe solde, mais les classes heritees	benefiecieront des methodes et 
+		attributs de la classe parent. Les classes FlightPassSolde et BilletRegulierSolde ont leur propre implementation de la 
+		methode sans implementation de la classe Solde (parent). En plus, ils ont acces aux attributs et methodes de cette classe sans 
+		avoir a declarer toutes les autres methodes qu'elles possedent conjointement avec la classe parent.
+
+
 2.	Pour quelle raison devons-nous déclarer certains destructeurs virtuels? 
 
+		Les classes polymorphes doivent toutes avoir un destructeur virtuel. Ainsi, les classes qui heritent pourront appeler 
+		leurs propres destructeurs et eviter des probleme tels que des fuites de memoire. Par exemple, si B herite de A, mais 
+		que le destructeur de A est virtuel et que celui-ci desalloue de la memoire. Lors de l'appel au destructeur de B en 
+		fin de programme, B appelera son propre destructeur ne desalouera pas la memoire que A doit deja desalouer. Sinon, B 
+		appel le destructeur de A qui desaloue la memoire. Il n'y aura pas non plus d'erreur a la compilation.
 */
 
 #include <string>

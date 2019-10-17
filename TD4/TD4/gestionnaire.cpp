@@ -63,38 +63,29 @@ void Gestionnaire::assignerBillet(Billet* billet, const string& nomMembre, bool 
 		return;
 	}
 
-	double prix = 0;
-
-	//On vérifie si le billet est soldé, dans ce cas on veut que prix corresponde au prix de base
-	if (auto billetreg = dynamic_cast<BilletRegulierSolde*>(billet)) {
-		prix = billetreg->getPrixBase();
-	}
-
-	else if (auto flightpass = dynamic_cast<FlightPassSolde*>(billet)) {
-		prix = flightpass->getPrixBase();
-	}
-
-	else
-		prix = billet->getPrix();
-
-	//On vérifie si on utilise un coupon
+	double prix = billet->Billet::getPrix();
+	
 	if (utiliserCoupon) {
 		prix -= appliquerCoupon(membre, prix);
 	}
 
-	//On vérifie si le membre est premium, dans ce cas on utilise un rabais
-	if (auto membrePremium = dynamic_cast<MembrePremium*>(membre)) {
-		double rabais = 0.005 * membrePremium->getpointsCumulee() / 1000;
+	if (auto membrePrem = dynamic_cast<MembrePremium*>(membre)) {
+		double rabais = 0.005 * membrePrem->getpointsCumulee() / 1000;
 		if (rabais > 0.1)
 			rabais = 0.1;
 
 		prix *= (1 - rabais);
+		billet->setPrix(prix);
+		membrePrem->ajouterBillet(billet);
 	}
-
-
-	
-	billet->setPrix(prix);
-	membre->ajouterBillet(billet);
+	else if (auto membreReg = dynamic_cast<MembreRegulier*>(membre)) {
+		billet->setPrix(prix);
+		membreReg->ajouterBillet(billet);				
+	}
+	else {
+		billet->setPrix(prix);
+		membre->ajouterBillet(billet);
+	}
 	
 }
 
@@ -163,68 +154,50 @@ void Gestionnaire::acheterCoupon(const string& nomMembre)
 // TODO
 double Gestionnaire::calculerRevenu()
 {
-	double somme = 0;
-	for (size_t i = 0; i < membres_.size(); i++)
-	{
-		for (size_t j = 0; j < membres_[i]->getBillets().size(); j++)
-		{
-			somme += membres_[i]->getBillets()[j]->getPrix();
-		}
-	}
+	double revenu = 0.0;
 
-	return somme;
+	for (unsigned int i = 0; i < membres_.size(); i++) {
+
+		for (unsigned int j = 0; j < membres_[i]->getBillets().size(); j++) 			
+			revenu += membres_[i]->getBillets()[j]->getPrix();
+
+	}
+	return revenu;
 }
 
 // TODO
 int Gestionnaire::calculerNombreBilletsEnSolde()
 {
-	int nbBilletsSoldes = 0;
-	for (size_t i = 0; i < membres_.size(); i++)
-	{
-		for (size_t j = 0; j < membres_[i]->getBillets().size(); j++)
-		{
-			
-			if(auto flightpassSolde = dynamic_cast<FlightPassSolde*>(membres_[i]->getBillets()[j]))
-				nbBilletsSoldes++;
+	int nbBilletsSolde = 0;
+	for (unsigned int i = 0; i < membres_.size(); i++) {
 
-			else if (auto billetRegSolde = dynamic_cast<BilletRegulierSolde*>(membres_[i]->getBillets()[j]))
-				nbBilletsSoldes++;
+		for (unsigned int j = 0; j < membres_[i]->getBillets().size(); j++) {
+			if (BilletRegulierSolde* billetRegulier = dynamic_cast<BilletRegulierSolde*>(membres_[i]->getBillets()[j]))
+				nbBilletsSolde++;
+			else if (FlightPassSolde* flightPass = dynamic_cast<FlightPassSolde*>(membres_[i]->getBillets()[j]))
+				nbBilletsSolde++;
 		}
-	}
+			
 
-	return nbBilletsSoldes;
+	}
+	return nbBilletsSolde;
 }
 
-// TODO: Retirer cette fonction par afficher()
-//ostream& operator<<(ostream& o, const Gestionnaire& gestionnaire)
-//{
-//	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";
-//
-//	for (int i = 0; i < gestionnaire.membres_.size(); ++i) {
-//		switch (gestionnaire.membres_[i]->getTypeMembre())
-//		{
-//		case Membre_Premium:
-//			o << *static_cast<MembrePremium*>(gestionnaire.membres_[i]);
-//			break;
-//		case Membre_Occasionnel:
-//			o << *gestionnaire.membres_[i];
-//			break;
-//		case Membre_Regulier:
-//			o << *static_cast<MembreRegulier*>(gestionnaire.membres_[i]);
-//			break;
-//		}
-//	}
-//
-//	return o;
-//}
 	
 // TODO
 void Gestionnaire::afficher(ostream& o)
 {
 	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";
 
-	for (size_t i = 0; i < membres_.size(); ++i) {
-		membres_[i]->afficher(o);
+	for (int i = 0; i < membres_.size(); ++i) {
+
+		if (auto membrePrem = dynamic_cast<MembrePremium*>(membres_[i]))
+			membrePrem->afficher(o);
+		if (auto membreReg = dynamic_cast<MembreRegulier*>(membres_[i]))
+			membreReg->afficher(o);
+		else if (auto membre = dynamic_cast<Membre*>(membres_[i]))
+			membre->afficher(o);
+
 	}
 
 }

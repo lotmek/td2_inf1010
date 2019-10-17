@@ -95,16 +95,6 @@ string Billet::formatTarif(TarifBillet tarif) const
 	}
 }
 
-// TODO : Remplacer cette fonction par la methode afficher()
-//ostream& operator<<(ostream& o, const Billet& billet)
-//{
-//	o << "\t\t- Billet " << billet.pnr_ << " (Classe : " << billet.formatTarif(billet.tarif_) << ")" << endl;
-//	o << left << "\t\t\t" << setw(11) << "- Passager " << ": " << billet.nomPassager_ << endl;
-//	o << "\t\t\t" << setw(11) << "- Prix" << ": " << billet.prix_ << "$" << endl;
-//	o << "\t\t\t" << setw(11) << "- Trajet" << ": " << billet.od_ << endl;
-//
-//	return o;
-//}
 
 // TODO
 void Billet::afficher(ostream& o)
@@ -113,5 +103,4 @@ void Billet::afficher(ostream& o)
 	o << left << "\t\t\t" << setw(11) << "- Passager " << ": " << nomPassager_ << endl;
 	o << "\t\t\t" << setw(11) << "- Prix" << ": " << prix_ << "$" << endl;
 	o << "\t\t\t" << setw(11) << "- Trajet" << ": " << od_ << endl;
-
 }

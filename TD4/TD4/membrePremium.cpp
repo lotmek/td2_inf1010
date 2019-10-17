@@ -50,7 +50,9 @@ double MembrePremium::calculerCoutCoupon(Coupon* coupon)
 // TODO
 bool MembrePremium::peutAcheterCoupon(Coupon* coupon)
 {
-	return points_ >= calculerCoutCoupon(coupon);
+	if (points_ >= calculerCoutCoupon(coupon))
+		return true;
+	return false;
 }
 
 void MembrePremium::acheterCoupon(Coupon* coupon)
@@ -71,10 +73,11 @@ void MembrePremium::acheterCoupon(Coupon* coupon)
 //}
 
 // TODO
-void MembrePremium::afficher(ostream& o)
+void MembrePremium::afficher(ostream& o) const
 {
+	//o << static_cast<MembreRegulier>(membrePremium) << endl;		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	MembreRegulier::afficher(o);
 	o << "\t- Points cumulee: " << pointsCumulee_ << endl;
 	o << "\t- Jours premium restant: " << joursRestants_ << endl;
-	
+	o << endl;
 }

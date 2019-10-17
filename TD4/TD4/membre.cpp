@@ -20,8 +20,13 @@ Membre::Membre(const string& nom) :
 Membre::Membre(const Membre& membre) :
 	nom_(membre.nom_)
 {
+	Billet* billet = nullptr;
 	for (size_t i = 0; i < membre.billets_.size(); ++i) {
-		billets_.push_back(membre.billets_[i]->clone());
+		billet = membre.getBillets()[i];
+		if (BilletRegulier* billetRegulier = dynamic_cast<BilletRegulier*>(billet))
+			billets_.push_back(billetRegulier->clone());
+		else if (FlightPass* flightPass = dynamic_cast<FlightPass*>(billet))
+			billets_.push_back(flightPass->clone());
 	}
 }
 
@@ -62,14 +67,13 @@ void Membre::utiliserBillet(const string& pnr)
 		cout << "Le billet n'est pas trouve" << endl;
 		return;
 	}
-
-	if (auto flightpass = dynamic_cast<FlightPass*>(billets_[indexTrouve])) {
-		flightpass->decrementeNbUtilisations();
-		if (flightpass->getNbUtilisationsRestante() > 0) {
+	if (FlightPass* flightPass = dynamic_cast<FlightPass*>(billets_[indexTrouve])) {
+		flightPass->decrementeNbUtilisations();
+		if (flightPass->getNbUtilisationsRestante() > 0) {
 			return;
 		}
 	}
-
+		
 	delete billets_[indexTrouve];
 	billets_[indexTrouve] = billets_[billets_.size() - 1];
 	billets_.pop_back();
@@ -103,43 +107,29 @@ Membre& Membre::operator=(const Membre& membre)
 
 		billets_.clear();
 
-		for (size_t i = 0; i < membre.billets_.size(); ++i) {
-			billets_.push_back(membre.billets_[i]->clone());
-		}
+		string nomTemp = nom_;										
+		this->Membre::Membre(membre);
+		nom_ = nomTemp;
 	}
 
 	return *this;
 }
 
-// TODO : Remplacer cette fonction par la methode afficher()
-//ostream& operator<<(ostream& o, const Membre& membre)
-//{
-//	o << setfill(' ');
-//	o << "- Membre " << membre.nom_ <<":" << endl;
-//	o << "\t" << "- Billets :" << endl;
-//	for (size_t i = 0; i < membre.billets_.size(); i++) {
-//		switch (membre.billets_[i]->getTypeBillet()) {
-//		case Billet_Base:
-//			o << *static_cast<Billet*>(membre.billets_[i]);
-//			break;
-//		case Billet_Regulier:
-//			o << *static_cast<BilletRegulier*>(membre.billets_[i]);
-//			break;
-//		case Flight_Pass:
-//			o << *static_cast<FlightPass*>(membre.billets_[i]);
-//			break;
-//		}
-//	}
-//	return o << endl;
-//}
 
 // TODO
-void Membre::afficher(ostream& o)
+void Membre::afficher(ostream& o) const
 {
 	o << setfill(' ');
 	o << "- Membre " << nom_ << ":" << endl;
 	o << "\t" << "- Billets :" << endl;
 	for (size_t i = 0; i < billets_.size(); i++) {
-		billets_[i]->afficher(o);
+		
+		if (BilletRegulier* billetRegulier = dynamic_cast<BilletRegulier*>(billets_[i]))
+			billetRegulier->afficher(o);
+		else if (FlightPass* flightPass = dynamic_cast<FlightPass*>(billets_[i]))
+			flightPass->afficher(o);
+		else if (Billet* billet = dynamic_cast<Billet*>(billets_[i]))
+			billet->afficher(o);
 	}
+	o << endl;
 }

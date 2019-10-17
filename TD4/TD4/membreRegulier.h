@@ -33,7 +33,7 @@ public:
 	//friend ostream& operator<<(ostream& os, const MembreRegulier& membreRegulier);
 
 	// TODO
-	void afficher(ostream& o);
+	void afficher(ostream& o) const override;
 protected:
 	int points_;
 	vector<Coupon*> coupons_;

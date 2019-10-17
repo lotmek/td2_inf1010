@@ -29,6 +29,6 @@ public:
 	BilletRegulierSolde* clone() override;
 
 	// TODO
-	void afficher(ostream& o) override;
+	void afficher(ostream& o);
 };
 #endif // !BILLET_REGULIER_SOLDE_H

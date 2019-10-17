@@ -39,13 +39,10 @@ public:
 	string formatTarif(TarifBillet tarif) const;
 
 	// TODO
-	virtual Billet* clone()=0;
-
-	// TODO : Remplacer cette fonction par la methode afficher()
-	//friend ostream& operator<<(ostream& o, const Billet& billet);
+	virtual Billet* clone() = 0;
 
 	// TODO
-	virtual void afficher(ostream& o);
+	void afficher(ostream& o);
 protected:
 	string pnr_;
 	string nomPassager_;

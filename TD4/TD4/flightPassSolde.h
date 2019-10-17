@@ -26,9 +26,9 @@ public:
 	double getPrixBase() const;
 
 	// TODO
-	FlightPassSolde* clone() override;
+	FlightPassSolde* clone();
 
 	// TODO
-	void afficher(ostream& o) override;
+	void afficher(ostream& o);
 };
 #endif // !FLIGHT_PASS_SOLDE_H

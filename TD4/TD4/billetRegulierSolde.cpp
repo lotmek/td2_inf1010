@@ -7,17 +7,17 @@
 #include "billetRegulierSolde.h"
 
 // TODO
-BilletRegulierSolde::BilletRegulierSolde(const string& pnr, double prix, const string& od, TarifBillet tarif, const string& dateVol, double pourcentageSolde)
-	:BilletRegulier(pnr, prix, od, tarif, dateVol),
-	Solde(pourcentageSolde)
+BilletRegulierSolde::BilletRegulierSolde(const string& pnr, double prix, const string& od, TarifBillet tarif, const string& dateVol, double pourcentageSolde):
+	BilletRegulier(pnr, prix, od, tarif, dateVol), Solde(pourcentageSolde)
 {
 }
 
 // TODO
 double BilletRegulierSolde::getPrix() const
 {
-	return (1-pourcentageSolde_) * prix_;
+	return prix_ * (1 - pourcentageSolde_); 
 }
+
 
 // TODO
 double BilletRegulierSolde::getPrixBase() const
@@ -35,5 +35,5 @@ BilletRegulierSolde* BilletRegulierSolde::clone()
 void BilletRegulierSolde::afficher(ostream& o)
 {
 	BilletRegulier::afficher(o);
-	o << "\t\t\t" << setw(11) << "- Pourcentage solde" << ": " << pourcentageSolde_ <<"%" << endl;
+	o << "\t\t\t" << setw(11) << "- Pourcentage solde" << ": " << pourcentageSolde_ << endl;
 }

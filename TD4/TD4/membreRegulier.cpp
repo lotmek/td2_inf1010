@@ -60,7 +60,7 @@ void MembreRegulier::ajouterBillet(Billet* billet)
  * Fonction:	MembreRegulier::operator+=
  * Description:	Surcharge l'opérateur += pour ajouter un pointeur coupon dans le vecteur coupons_
  * Paramètres:	(Coupon* coupon)
- * Retour:		MembreRegulier& membre
+ * Retour:		Membre& membre
  ****************************************************************************/
 Membre& MembreRegulier::operator+=(Coupon* coupon)
 {

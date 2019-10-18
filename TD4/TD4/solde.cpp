@@ -12,7 +12,7 @@
 
  /****************************************************************************
   * Fonction:		Solde:solde
-  * Description:	Modifie le pourcentageSolde
+  * Description:	Constructeur par parametre
   * Paramètres:		(double pourcentageSolde)
   * Retour:			aucun
   ****************************************************************************/

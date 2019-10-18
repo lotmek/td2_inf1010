@@ -34,7 +34,7 @@ void MembrePremium::setJourRestants(unsigned int joursRestants)
 
 /****************************************************************************
  * Fonction:	MembrePremium::modifierPointsCumules
- * Description: Incrémente les points cumulés.
+ * Description: Incrémente les points cumules.
  * Paramètres:	(unsigned int pointCumulee)
  * Retour:		aucun
  ****************************************************************************/
@@ -56,7 +56,7 @@ unsigned int MembrePremium::getJourRestants() const
 
 /****************************************************************************
  * Fonction:	MembrePremium::getpointsCumulee
- * Description: Fournit le nombre de points cumulés.
+ * Description: Fournit le nombre de points cumules.
  * Paramètres:	aucun
  * Retour:		unsigned int points cumulés
  ****************************************************************************/
@@ -111,7 +111,7 @@ bool MembrePremium::peutAcheterCoupon(Coupon* coupon)
 
 /****************************************************************************
  * Fonction:	MembrePremium::acheterCoupon
- * Description:	Ajoute le coupon(achète) si le membre possède assez de points. 
+ * Description:	Ajoute le coupon(achete) si le membre possède assez de points. 
  *				Applique un rabais aux membres premiums.
  * Paramètres:	(Coupon* coupon)
  * Retour:		aucun

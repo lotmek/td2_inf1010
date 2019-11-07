@@ -139,19 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\enonce\billet.cpp" />
-    <ClCompile Include="..\enonce\billetRegulier.cpp" />
-    <ClCompile Include="..\enonce\billetRegulierSolde.cpp" />
-    <ClCompile Include="..\enonce\coupon.cpp" />
-    <ClCompile Include="..\enonce\flightPass.cpp" />
-    <ClCompile Include="..\enonce\flightPassSolde.cpp" />
-    <ClCompile Include="..\enonce\gestionnaireCoupons.cpp" />
-    <ClCompile Include="..\enonce\gestionnaireMembres.cpp" />
-    <ClCompile Include="..\enonce\main.cpp" />
-    <ClCompile Include="..\enonce\membre.cpp" />
-    <ClCompile Include="..\enonce\membrePremium.cpp" />
-    <ClCompile Include="..\enonce\membreRegulier.cpp" />
-    <ClCompile Include="..\enonce\solde.cpp" />
+    <ClCompile Include="billet.cpp" />
+    <ClCompile Include="billetRegulier.cpp" />
+    <ClCompile Include="billetRegulierSolde.cpp" />
+    <ClCompile Include="coupon.cpp" />
+    <ClCompile Include="flightPass.cpp" />
+    <ClCompile Include="flightPassSolde.cpp" />
+    <ClCompile Include="gestionnaireCoupons.cpp" />
+    <ClCompile Include="gestionnaireMembres.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="membre.cpp" />
+    <ClCompile Include="membrePremium.cpp" />
+    <ClCompile Include="membreRegulier.cpp" />
+    <ClCompile Include="solde.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\enonce\billet.h" />
@@ -169,6 +169,21 @@
     <ClInclude Include="..\enonce\membrePremium.h" />
     <ClInclude Include="..\enonce\membreRegulier.h" />
     <ClInclude Include="..\enonce\solde.h" />
+    <ClInclude Include="billet.h" />
+    <ClInclude Include="billetRegulier.h" />
+    <ClInclude Include="billetRegulierSolde.h" />
+    <ClInclude Include="coupon.h" />
+    <ClInclude Include="def.h" />
+    <ClInclude Include="flightPass.h" />
+    <ClInclude Include="flightPassSolde.h" />
+    <ClInclude Include="foncteur.h" />
+    <ClInclude Include="gestionnaireCoupons.h" />
+    <ClInclude Include="gestionnaireGenerique.h" />
+    <ClInclude Include="gestionnaireMembres.h" />
+    <ClInclude Include="membre.h" />
+    <ClInclude Include="membrePremium.h" />
+    <ClInclude Include="membreRegulier.h" />
+    <ClInclude Include="solde.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

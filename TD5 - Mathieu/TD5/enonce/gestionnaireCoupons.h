@@ -14,11 +14,14 @@
 #include "solde.h"
 #include "gestionnaireGenerique.h"
 
-class GestionnaireCoupons : public GestionnaireGenerique {
+class GestionnaireCoupons : public GestionnaireGenerique<Membre, double> {
 public:
 
 	double appliquerCoupon(Membre* membre, double prix);
 	void acheterCoupon(Membre* membre);
+	//int GestionnaireGenerique< Membre, double >::getNombreElements() const {
+	//	return 0;														/////////////////A changer 
+	//}
 };
 #endif // !GESTIONNAIRECOUPONS_H
 

@@ -14,7 +14,7 @@
 #include "solde.h"
 #include "gestionnaireGenerique.h"
 
-class GestionnaireCoupons {
+class GestionnaireCoupons : public GestionnaireGenerique {
 public:
 
 	double appliquerCoupon(Membre* membre, double prix);

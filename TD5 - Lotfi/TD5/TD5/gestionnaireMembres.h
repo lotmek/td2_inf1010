@@ -18,7 +18,7 @@
 class GestionnaireMembres: public GestionnaireGenerique<pair<string, Membre*>, map<string, Membre*>, AjouterMembre> {
 public:
 
-	void assignerBillet(Billet* billet, const string& nomMembre, int rabaisCoupon);
+	void assignerBillet(Billet* billet, const string& nomMembre, double rabaisCoupon);
 
 	//TODO
 	double calculerRevenu() const;

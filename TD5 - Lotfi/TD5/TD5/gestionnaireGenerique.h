@@ -33,28 +33,22 @@ template<typename T, typename C, typename FoncteurAjouter>
 class GestionnaireGenerique
 {
 public:
-	C getConteneur() const;
-	void ajouter(T t);
-	int getNombreElements() const;
+	C getConteneur() const 
+	{
+		return conteneur_;
+	}
+
+	void ajouter(T t) 
+	{
+		FoncteurAjouter c = FoncteurAjouter(conteneur_);
+		c(t);
+	}
+
+	int getNombreElements() const
+	{
+		return conteneur_.size();
+	}
 
 protected:
 	C conteneur_;
 };
-
-template<typename T, typename C, typename FoncteurAjouter>
-C GestionnaireGenerique<T, C, FoncteurAjouter>::getConteneur() const
-{
-	return conteneur_; 
-}
-
-template<typename T, typename C, typename FoncteurAjouter>
-void GestionnaireGenerique<T, C, FoncteurAjouter>::ajouter(T t)
-{
-	FoncteurAjouter(T); 
-}
-
-template<typename T, typename C, typename FoncteurAjouter>
-int GestionnaireGenerique<T, C, FoncteurAjouter>::getNombreElements() const
-{
-	return conteneur_.size(); 
-}

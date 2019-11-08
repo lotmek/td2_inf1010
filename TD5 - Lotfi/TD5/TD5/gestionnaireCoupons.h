@@ -14,7 +14,7 @@
 #include "solde.h"
 #include "gestionnaireGenerique.h"
 
-class GestionnaireCoupons : public GestionnaireGenerique<Coupon*, vector<Coupon*>, AjouterCoupon> {
+class GestionnaireCoupons : public GestionnaireGenerique<Coupon*, vector<Coupon*>, AjouterCoupon > {
 public:
 
 	double appliquerCoupon(Membre* membre, double prix);

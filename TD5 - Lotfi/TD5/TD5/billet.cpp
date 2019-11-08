@@ -22,6 +22,7 @@ Billet::Billet(const string& pnr, double prix, const string& od, TarifBillet tar
 	od_(od),
 	tarif_(tarif)
 {
+
 }
 
 Billet::~Billet()
@@ -106,3 +107,8 @@ void Billet::afficher(ostream& o) const
 }
 
 //todo operateur<<
+ostream& operator<<(ostream& o, Billet const* billet) 
+{
+	billet->afficher(o);
+	return o;
+}

@@ -20,17 +20,15 @@ Membre::Membre(const string& nom) :
 Membre::Membre(const Membre& membre) :
 	nom_(membre.nom_)
 {
-	for (size_t i = 0; i < membre.billets_.size(); ++i) {
-		billets_.push_back(membre.billets_[i]->clone());
-	}
+	billets_.clear();
+	copy(membre.getBillets().begin(), membre.getBillets().end(), back_inserter(billets_));
 }
 
 //todo
 Membre::~Membre()
 {
-	for (size_t i = 0; i < billets_.size(); ++i) {
-		delete billets_[i];
-	}
+	for (vector<Billet*>::iterator it = billets_.begin(); it != billets_.end(); it++)
+		delete *it;
 }
 
 string Membre::getNom() const
@@ -49,33 +47,28 @@ void Membre::setNom(const string& nom)
 }
 
 //todo implemente trouverBillet() signature dans le .h
+vector<Billet*>::iterator Membre::trouverBillet(const string& pnr)
+{
+	for (vector<Billet*>::iterator it = billets_.begin(); it != billets_.end(); it++) {
+		if ((*it)->getPnr() == pnr) return it;
+	}
+
+}
 
 //todo
 void Membre::utiliserBillet(const string& pnr)
 {
-	int indexTrouve = -1;
-	for (size_t i = 0; i < billets_.size(); ++i) {
-		if (billets_[i]->getPnr() == pnr) {
-			indexTrouve = i;
-			break;
-		}
-	}
+	vector<Billet*>::iterator it = trouverBillet(pnr);
 
-	if (indexTrouve == -1) {
-		cout << "Le billet n'est pas trouve" << endl;
-		return;
-	}
-
-	if (auto flightPass = dynamic_cast<FlightPass*>(billets_[indexTrouve])) {
+	if (auto flightPass = dynamic_cast<FlightPass*>(*it)) {
 		flightPass->decrementeNbUtilisations();
 		if (flightPass->getNbUtilisationsRestante() > 0) {
 			return;
 		}
 	}
 
-	delete billets_[indexTrouve];
-	billets_[indexTrouve] = billets_[billets_.size() - 1];
-	billets_.pop_back();
+	delete *it;
+	billets_.erase(it);
 }
 
 void Membre::ajouterBillet(Billet* billet)
@@ -101,15 +94,12 @@ Membre& Membre::operator=(const Membre& membre)
 	if (this != &membre) {
 		nom_ = membre.nom_;
 
-		for (size_t i = 0; i < billets_.size(); ++i) {
-			delete billets_[i];
-		}
+		for (vector<Billet*>::iterator it = billets_.begin(); it != billets_.end(); it++)
+			delete *it;
 
 		billets_.clear();
 
-		for (size_t i = 0; i < membre.billets_.size(); ++i) {
-			billets_.push_back(membre.billets_[i]->clone());
-		}
+		copy(membre.getBillets().begin(), membre.getBillets().end(), back_inserter(billets_));
 	}
 
 	return *this;
@@ -122,7 +112,6 @@ void Membre::afficher(ostream& o) const
 	o << setfill(' ');
 	o << "- Membre " << nom_ << ":" << endl;
 	o << "\t" << "- Billets :" << endl;
-	for (size_t i = 0; i < billets_.size(); ++i) {
-		billets_[i]->afficher(o);
-	}
+
+	copy(billets_.begin(), billets_.end(), ostream_iterator<Billet*>(cout, "\n"));
 }

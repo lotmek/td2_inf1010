@@ -37,10 +37,9 @@ Membre& MembreRegulier::operator+=(Coupon* coupon)
 //todo
 Membre& MembreRegulier::operator-=(Coupon* coupon)
 {
-	for (size_t i = 0; i < coupons_.size(); ++i) {
-		if (coupons_[i] == coupon) {
-			coupons_[i] = coupons_[coupons_.size() - 1];
-			coupons_.pop_back();
+	for (vector<Coupon*>::iterator it = coupons_.begin(); it != coupons_.end(); it++) {
+		if (*it == coupon) {
+			coupons_.erase(it);
 			return *this;
 		}
 	}
@@ -96,4 +95,6 @@ void MembreRegulier::afficher(ostream& o) const
 	for (size_t i = 0; i < coupons_.size(); ++i) {
 		coupons_[i]->afficher(o);
 	}
+
+	copy(coupons_.begin(), coupons_.end(), ostream_iterator<Coupon*>(cout, "\n"));
 }

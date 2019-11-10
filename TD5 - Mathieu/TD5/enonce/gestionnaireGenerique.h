@@ -31,7 +31,7 @@ using namespace  std;
 	* Conteneur   = map<string, Membre*> ou vector<Coupon*>; 
 	* FoncteurAjouter = AjouterMembre ou AjouterCoupon
 */
-template<typename T, typename C>
+template<typename T, typename C, typename FoncteurAjouter>
 class GestionnaireGenerique
 {
 public:
@@ -39,7 +39,6 @@ public:
 	C getConteneur() const {};
 	void ajouter(const T& t) {};
 	int getNombreElements() const;
-	typename FoncteurAjouter;
 
 protected:
 	C conteneur_;
@@ -49,14 +48,14 @@ protected:
 #endif // !GESTIONNAIREGENERIQUE_H
 
 		//////Implementation
-template<typename T, typename C>
-C GestionnaireGenerique< T, C >::getConteneur() const {
+template<typename T, typename C, typename FoncteurAjouter>
+C GestionnaireGenerique< T, C, FoncteurAjouter>::getConteneur() const {
 	return conteneur_;
 }
 
-template<typename T, typename C>
-int GestionnaireGenerique< T, C >::getNombreElements() const {
-	return 0;														/////////////////A changer 
+template<typename T, typename C, typename FoncteurAjouter>
+int GestionnaireGenerique< T, C, FoncteurAjouter>::getNombreElements() const {
+	return conteneur_.size();														/////////////////A changer 
 }
 
 //template<typename T, typename C>

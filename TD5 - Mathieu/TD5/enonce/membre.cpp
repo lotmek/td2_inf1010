@@ -20,17 +20,15 @@ Membre::Membre(const string& nom) :
 Membre::Membre(const Membre& membre) :
 	nom_(membre.nom_)
 {
-	for (size_t i = 0; i < membre.billets_.size(); ++i) {
-		billets_.push_back(membre.billets_[i]->clone());
-	}
+	billets_.clear();
+	copy(membre.billets_.begin(), membre.billets_.end(), back_inserter(billets_));
 }
 
 //todo
 Membre::~Membre()
 {
-	for (size_t i = 0; i < billets_.size(); ++i) {
-		delete billets_[i];
-	}
+	for (vector<Billet*>::iterator it; it != billets_.end(); it++)
+		delete *it;
 }
 
 string Membre::getNom() const
@@ -49,6 +47,20 @@ void Membre::setNom(const string& nom)
 }
 
 //todo implemente trouverBillet() signature dans le .h
+vector<Billet*>::iterator Membre::trouverBillet(const string& pnr) {
+	/*vector<Billet*>::iterator it = find_if(billets_.begin(), billets_.end(), [&pnr](Billet* billet) {
+		if (billet->getPnr() == pnr)
+			return true;
+		return false;
+	});*/
+	auto
+	find_if(billets_.begin(), billets_.end(), [&pnr](Billet* billet) {
+		if (billet->getPnr() == pnr)
+			return true;
+		return false;
+	});
+	return *it;
+}
 
 //todo
 void Membre::utiliserBillet(const string& pnr)

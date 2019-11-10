@@ -25,5 +25,17 @@ class AjouterMembre
 
 class IntervallePrixBillet
 {
-//  TODO
+public:
+	IntervallePrixBillet(double borneInf, double borneSup)
+		:borneInf_(borneInf), borneSup_(borneSup){}
+
+	bool operator()(Billet* billet) const{ //verifie si le prix du billet est dans un intervalle
+		if (billet->getPrix() > borneInf_ && billet->getPrix() < borneSup_)
+			return true;
+		return false;
+	}
+
+private:	
+	double borneInf_;
+	double borneSup_;
 };

@@ -17,7 +17,7 @@ using namespace std;
 int main() {
 
 	vector<bool> tests;
-
+	
 	// TESTS
 	Billet* b1 = new BilletRegulier("B4Y6S1", 2000, "YUL - LGA", TarifBillet::Premiere, "2019-12-21");
 	Billet* b2 = new BilletRegulier("A1A1A1", 3000, "YUL - CDG", TarifBillet::Premiere, "2019-12-21");

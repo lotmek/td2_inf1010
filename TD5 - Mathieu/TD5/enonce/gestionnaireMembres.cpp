@@ -45,8 +45,8 @@ double GestionnaireMembres::calculerRevenu() const
 	//TODO
 	double revenu = 0;
 	for (pair<string, Membre*> membre: conteneur_) {
-		for_each(membre.second->getBillets().begin(), membre.second->getBillets().end(), [&revenu](const Billet& billet) {
-			revenu += billet.getPrix(); 
+		for_each(membre.second->getBillets().begin(), membre.second->getBillets().end(), [&revenu](Billet* billet) {
+			revenu += billet->getPrix(); 
 		});
 	}
 	return revenu;

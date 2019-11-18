@@ -1,11 +1,21 @@
-/********************************************
-* Titre: Travail pratique #5 - billet.cpp
-* Date: 30 octobre 2019
-* Auteur: Allan BEDDOUK & Jeffrey LAVALLEE
-*******************************************/
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 5
+ * Nom: billet.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #include "billet.h"
 
+/****************************************************************************
+ * Fonction:	Billet::Billet
+ * Description: Constructeur par défaut.
+ * Paramètres:	aucun
+ * Retour:		aucun
+ ****************************************************************************/
 Billet::Billet() :
 	pnr_(""),
 	nomPassager_(""),
@@ -15,6 +25,13 @@ Billet::Billet() :
 {
 }
 
+/****************************************************************************
+ * Fonction:	Billet::Billet
+ * Description: Constructeur par paramètres.
+ * Paramètres:	(const) string& pnr, (const string&) nomPassager, (double) prix,
+ *				(const string&) od, (TarifBillet) tarif, const string& dateVol)
+ * Retour:		aucun
+ ****************************************************************************/
 Billet::Billet(const string& pnr, double prix, const string& od, TarifBillet tarif) :
 	pnr_(pnr),
 	nomPassager_(""),
@@ -25,60 +42,132 @@ Billet::Billet(const string& pnr, double prix, const string& od, TarifBillet tar
 
 }
 
+/****************************************************************************
+ * Fonction:	Billet::Billet
+ * Description: Destructeur de Billet.
+ * Paramètres:	aucun
+ * Retour:		aucun
+ ****************************************************************************/
 Billet::~Billet()
 {
 }
 
+/****************************************************************************
+ * Fonction:	Billet::getPnr
+ * Description: Fournit le Pnr: numero de reservation du billet (ID).
+ * Paramètres:	aucun
+ * Retour:		(string) pnr
+ ****************************************************************************/
 string Billet::getPnr() const
 {
 	return pnr_;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::getNomPassager
+ * Description: Fournit le nom du passager.
+ * Paramètres:	aucun
+ * Retour:		(string) nom du passager
+ ****************************************************************************/
 string Billet::getNomPassager() const
 {
 	return nomPassager_;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::getPrix
+ * Description: Fournit le prix du billet.
+ * Paramètres:	aucun
+ * Retour:		(double) prix du billet
+ ****************************************************************************/
 double Billet::getPrix() const
 {
 	return prix_;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::getOd
+ * Description: Fournit l'origine et la destination du billet.
+ * Paramètres:	aucun
+ * Retour:		(string) od
+ ****************************************************************************/
 string Billet::getOd() const
 {
 	return od_;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::getTarif
+ * Description: Fournit le tarif du billet.
+ * Paramètres:	aucun
+ * Retour:		(TarifBillet) le tarif
+ ****************************************************************************/
 TarifBillet Billet::getTarif() const
 {
 	return tarif_;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::setPnr
+ * Description: Modifie le pnr: numero de reservation du billet (ID).
+ * Paramètres:	(const string& pnr)
+ * Retour:		aucun
+ ****************************************************************************/
 void Billet::setPnr(const string& pnr)
 {
 	pnr_ = pnr;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::setNomPassager
+ * Description: Modifie le nom du passager.
+ * Paramètres:	(const string& nomPassager)
+ * Retour:		aucun
+ ****************************************************************************/
 void Billet::setNomPassager(const string& nomPassager)
 {
 	nomPassager_ = nomPassager;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::setPrix
+ * Description: Modifie le prix.
+ * Paramètres:	(double prix)
+ * Retour:		aucun
+ ****************************************************************************/
 void Billet::setPrix(double prix)
 {
 	prix_ = prix;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::setOd
+ * Description: Modifie l'origine et la destination du billet.
+ * Paramètres:	(const string& od)
+ * Retour:		aucun
+ ****************************************************************************/
 void Billet::setOd(const string& od)
 {
 	od_ = od;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::setTarif
+ * Description: Modifie le tarif du billet.
+ * Paramètres:	(TarifBillet tarif)
+ * Retour:		aucun
+ ****************************************************************************/
 void Billet::setTarif(TarifBillet tarif)
 {
 	tarif_ = tarif;
 }
 
+/****************************************************************************
+ * Fonction:	Billet::formatTarif
+ * Description: Fournit la string correspondante a la classe de l'Enum TarifBillet.
+ * Paramètres:	(TarifBillet tarif) const
+ * Retour:		(string) classe du billet
+ ****************************************************************************/
 string Billet::formatTarif(TarifBillet tarif) const
 {
 	switch (tarif)
@@ -97,7 +186,12 @@ string Billet::formatTarif(TarifBillet tarif) const
 }
 
 
-
+/****************************************************************************
+ * Fonction:	Billet::afficher
+ * Description: Affiche les informations du billet
+ * Paramètres:	(ostream&) o
+ * Retour:		aucun
+ ****************************************************************************/
 void Billet::afficher(ostream& o) const
 {
 	o << "\t\t- Billet " << pnr_ << " (Classe : " << formatTarif(tarif_) << ")" << endl;
@@ -106,7 +200,13 @@ void Billet::afficher(ostream& o) const
 	o << "\t\t\t" << setw(11) << "- Trajet" << ": " << od_ << endl;
 }
 
-//todo operateur<<
+/****************************************************************************
+ * Fonction:	operator<<
+ * Description: Surcharge l'opérateur << pour afficher les billets
+ * Paramètres:	-(ostream&) o
+ *				-(Billet const*) billet
+ * Retour:		(ostream&) o
+ ****************************************************************************/
 ostream& operator<<(ostream& o, Billet const* billet) 
 {
 	billet->afficher(o);

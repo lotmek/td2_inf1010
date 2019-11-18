@@ -1,8 +1,12 @@
-/********************************************
-* Titre: Travail pratique #5 - gestionnaireMembres.cpp
-* Date: 30 octobre 2019
-* Auteur: Allan BEDDOUK & Jeffrey LAVALLEE
-*******************************************/
+/**********************************************************************
+ * Cours : INF1010
+ * Travail pratique 5
+ * Nom: gestionnaireMembres.cpp
+ * Auteurs:		 Lotfi		Meklati      1953909
+ *			     Mathieu	Bussières    1882012
+ * Equipe : 17
+ * Groupe : 03
+ **********************************************************************/
 
 #include "GestionnaireMembres.h"
 #include <numeric>
@@ -39,7 +43,12 @@ void GestionnaireMembres::assignerBillet(Billet* billet, const string& nomMembre
 }
 
 
-
+/****************************************************************************
+ * Fonction:	GestionnaireMembres::calculerRevenu
+ * Description: Calcule la somme des prix des billets possédés par tous les membres
+ * Paramètres:	aucun
+ * Retour:		(double) revenu total des billets
+ ****************************************************************************/
 double GestionnaireMembres::calculerRevenu() const
 {
 	//TODO
@@ -57,6 +66,12 @@ double GestionnaireMembres::calculerRevenu() const
 	return revenu;
 }
 
+/****************************************************************************
+ * Fonction:	GestionnaireMembres::calculerNombreBilletsEnSolde
+ * Description: Calcule le nombre de billets en solde possédés par tous les membres
+ * Paramètres:	aucun
+ * Retour:		(int) le nombre total de billets en solde
+ ****************************************************************************/
 int GestionnaireMembres::calculerNombreBilletsEnSolde() const
 {
 	//TODO
@@ -82,7 +97,12 @@ int GestionnaireMembres::calculerNombreBilletsEnSolde() const
 
 
 
-//TODO
+/****************************************************************************
+ * Fonction:	GestionnaireMembres::getBilletMin
+ * Description: Cherche et retourne le billet le moins cher possédé par un membre
+ * Paramètres:	(string) nomMembre
+ * Retour:		(Billet*) pointeur qui pointe vers le billet le moins cher
+ ****************************************************************************/
 Billet* GestionnaireMembres::getBilletMin(string nomMembre) const
 {
 	Membre* membreRecherche = nullptr;
@@ -119,7 +139,12 @@ Billet* GestionnaireMembres::getBilletMin(string nomMembre) const
 
 
 
-//TODO
+/****************************************************************************
+ * Fonction:	GestionnaireMembres::getBilletMax
+ * Description: Cherche et retourne le billet le plus cher possédé par un membre
+ * Paramètres:	(string) nomMembre
+ * Retour:		(Billet*) pointeur qui pointe vers le billet le plus cher
+ ****************************************************************************/
 Billet* GestionnaireMembres::getBilletMax(string nomMembre) const
 {
 	Membre* membreRecherche = nullptr;
@@ -154,17 +179,12 @@ Billet* GestionnaireMembres::getBilletMax(string nomMembre) const
 
 }
 
-void GestionnaireMembres::afficher(ostream& o) const
-{
-	//TODO
-	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";
-
-	for_each(conteneur_.begin(), conteneur_.end(), [&o](const pair<string, Membre*>& membre)
-	{
-		membre.second->afficher(o);
-	});
-}
-
+/****************************************************************************
+ * Fonction:	GestionnaireMembres::trouverBilletParIntervallle
+ * Description: Retourne un vecteur de billets possédés par un membre compris dans l'intervalle de prix passés en paramètres
+ * Paramètres:	(Membre*) membre, (double) prixInf, (double) prixSup
+ * Retour:		(vector<Billet*>) vecteur de billets compris dans l'intervalle
+ ****************************************************************************/
 vector<Billet*> GestionnaireMembres::trouverBilletParIntervallle(Membre* membre, double prixInf, double prixSup) const 
 {
 	IntervallePrixBillet intervalle(prixInf, prixSup);
@@ -174,4 +194,21 @@ vector<Billet*> GestionnaireMembres::trouverBilletParIntervallle(Membre* membre,
 	//On copie les billets qui satisfont le foncteur "IntervallePrixBillet"
 	copy_if(billets.begin(), billets.end(), back_inserter(billetsIntervalle), intervalle);
 	return billetsIntervalle;
+}
+
+/****************************************************************************
+ * Fonction:	GestionnaireMembres::afficher
+ * Description: Affiche les informations de tous les membres
+ * Paramètres:	(ostream&) o
+ * Retour:		aucun
+ ****************************************************************************/
+void GestionnaireMembres::afficher(ostream& o) const
+{
+	//TODO
+	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";
+
+	for_each(conteneur_.begin(), conteneur_.end(), [&o](const pair<string, Membre*>& membre)
+	{
+		membre.second->afficher(o);
+	});
 }

@@ -1,0 +1,21 @@
+QMAKE_CXX.QT_COMPILER_STDCXX = 201402L
+QMAKE_CXX.QMAKE_GCC_MAJOR_VERSION = 7
+QMAKE_CXX.QMAKE_GCC_MINOR_VERSION = 3
+QMAKE_CXX.QMAKE_GCC_PATCH_VERSION = 0
+QMAKE_CXX.COMPILER_MACROS = \
+    QT_COMPILER_STDCXX \
+    QMAKE_GCC_MAJOR_VERSION \
+    QMAKE_GCC_MINOR_VERSION \
+    QMAKE_GCC_PATCH_VERSION
+QMAKE_CXX.INCDIRS = \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include
+QMAKE_CXX.LIBDIRS = \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0 \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/lib/gcc \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/x86_64-w64-mingw32/lib \
+    D:/Logiciels_applications/Logiciels/Qt/Tools/mingw730_64/lib

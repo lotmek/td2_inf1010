@@ -1,0 +1,13 @@
+debug/billet.o
+debug/billetRegulier.o
+debug/billetRegulierSolde.o
+debug/coupon.o
+debug/flightPass.o
+debug/flightPassSolde.o
+debug/main.o
+debug/mainwindow.o
+debug/membre.o
+debug/membrePremium.o
+debug/membreRegulier.o
+debug/solde.o
+debug/moc_mainwindow.o

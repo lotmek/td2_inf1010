@@ -1,0 +1,13 @@
+release/billet.o
+release/billetRegulier.o
+release/billetRegulierSolde.o
+release/coupon.o
+release/flightPass.o
+release/flightPassSolde.o
+release/main.o
+release/mainwindow.o
+release/membre.o
+release/membrePremium.o
+release/membreRegulier.o
+release/solde.o
+release/moc_mainwindow.o
